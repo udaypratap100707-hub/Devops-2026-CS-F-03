@@ -2,12 +2,18 @@ name: Weekly Progress Report Auto-Commit
 
 on:
   schedule:
-    # Runs every Saturday at 11:59 PM IST (18:29 UTC, Day 6 = Saturday)
+    # Runs every Saturday at 11:59 PM IST
     - cron: '29 18 * * 6'
-  workflow_dispatch: # Allows manual trigger anytime from the Actions tab
+
+  workflow_dispatch:
 
 permissions:
   contents: write
+
+# Prevent two report workflows from running at the same time
+concurrency:
+  group: weekly-progress-report
+  cancel-in-progress: false
 
 jobs:
   generate-and-commit:
@@ -36,15 +42,30 @@ jobs:
       - name: Move PDF to Weekly Reports Directory & Commit to Repository
         run: |
           mkdir -p weekly_reports
+
           mv *_Weekly_Progress_Report_Form-3_*.pdf weekly_reports/
+
           git config --global user.name "github-actions[bot]"
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
-          git add weekly_reports/
+
+          echo "Adding all changes..."
+          git add -A
+
+          echo "Git status before commit:"
+          git status
 
           if git diff --staged --quiet; then
             echo "No new changes or reports to commit."
           else
+            echo "Committing weekly report..."
+
             git commit -m "docs: archive Form-3 weekly progress report [skip ci]"
-            git pull --rebase origin main
-            git push
+
+            echo "Pulling latest changes..."
+            git pull --rebase --autostash origin main
+
+            echo "Pushing report..."
+            git push origin main
+
+            echo "Weekly report successfully committed and pushed."
           fi
