@@ -1,0 +1,748 @@
+{
+  "users": [
+    {
+      "id": "USR001",
+      "name": "Dr. V. K. Sharma",
+      "email": "admin@campus.edu",
+      "password": "admin123",
+      "role": "admin"
+    },
+    {
+      "id": "USR002",
+      "name": "Prof. Archana Rao",
+      "email": "tpo@campus.edu",
+      "password": "tpo123",
+      "role": "tpo"
+    },
+    {
+      "id": "USR003",
+      "name": "Sarah Jenkins (Google HR)",
+      "email": "s.jenkins@google.com",
+      "password": "recruiter123",
+      "role": "recruiter",
+      "companyId": "COMP001"
+    },
+    {
+      "id": "USR004",
+      "name": "Rajesh Kumar (Microsoft HR)",
+      "email": "rajesh.k@microsoft.com",
+      "password": "recruiter123",
+      "role": "recruiter",
+      "companyId": "COMP002"
+    },
+    {
+      "id": "USR005",
+      "name": "Rahul Sharma",
+      "email": "rahul.sharma@campus.edu",
+      "password": "student123",
+      "role": "student",
+      "studentId": "STU001"
+    },
+    {
+      "id": "USR006",
+      "name": "Priya Patel",
+      "email": "priya.patel@campus.edu",
+      "password": "student123",
+      "role": "student",
+      "studentId": "STU002"
+    },
+    {
+      "id": "USR007",
+      "name": "Sneha Kulkarni",
+      "email": "sneha.kulkarni@campus.edu",
+      "password": "student123",
+      "role": "student",
+      "studentId": "STU006"
+    },
+    {
+      "id": "USR3494",
+      "name": "Vikramaditya Singh",
+      "email": "vikram@campus.edu",
+      "password": "password123",
+      "role": "student",
+      "studentId": "STU3494",
+      "companyId": null
+    },
+    {
+      "id": "USR1652",
+      "name": "asandsnc",
+      "email": "djfnjvn@gmail.com",
+      "password": "123456",
+      "role": "student",
+      "studentId": "STU1652",
+      "companyId": null
+    }
+  ],
+  "students": [
+    {
+      "id": "STU001",
+      "name": "Rahul Sharma",
+      "email": "rahul.sharma@campus.edu",
+      "phone": "+91 98765 43210",
+      "branch": "Computer Science",
+      "cgpa": 8.75,
+      "class10Pct": 94.2,
+      "class12Pct": 91.5,
+      "backlogs": 0,
+      "graduationYear": 2026,
+      "skills": [
+        "Node.js",
+        "React",
+        "Python",
+        "SQL",
+        "Docker"
+      ],
+      "resumeUrl": "https://example.com/resumes/rahul_sharma.pdf",
+      "status": "Placed",
+      "offerPackage": "₹24.0 LPA",
+      "placedCompany": "Innovate AI"
+    },
+    {
+      "id": "STU002",
+      "name": "Priya Patel",
+      "email": "priya.patel@campus.edu",
+      "phone": "+91 98765 43211",
+      "branch": "Information Technology",
+      "cgpa": 9.2,
+      "class10Pct": 96,
+      "class12Pct": 94.8,
+      "backlogs": 0,
+      "graduationYear": 2026,
+      "skills": [
+        "AWS",
+        "Java",
+        "Spring Boot",
+        "Go",
+        "Kubernetes"
+      ],
+      "resumeUrl": "https://example.com/resumes/priya_patel.pdf",
+      "status": "Placed",
+      "offerPackage": "₹28.5 LPA",
+      "placedCompany": "Microsoft"
+    },
+    {
+      "id": "STU003",
+      "name": "Amit Verma",
+      "email": "amit.verma@campus.edu",
+      "phone": "+91 98765 43212",
+      "branch": "Electronics & Comm",
+      "cgpa": 7.4,
+      "class10Pct": 85,
+      "class12Pct": 82,
+      "backlogs": 0,
+      "graduationYear": 2026,
+      "skills": [
+        "C++",
+        "Embedded C",
+        "VLSI",
+        "Python"
+      ],
+      "resumeUrl": "https://example.com/resumes/amit_verma.pdf",
+      "status": "Shortlisted",
+      "offerPackage": "-",
+      "placedCompany": "-"
+    },
+    {
+      "id": "STU004",
+      "name": "Ananya Roy",
+      "email": "ananya.roy@campus.edu",
+      "phone": "+91 98765 43213",
+      "branch": "Computer Science",
+      "cgpa": 8.1,
+      "class10Pct": 91,
+      "class12Pct": 88.5,
+      "backlogs": 0,
+      "graduationYear": 2026,
+      "skills": [
+        "Python",
+        "SQL",
+        "Tableau",
+        "Machine Learning",
+        "R"
+      ],
+      "resumeUrl": "https://example.com/resumes/ananya_roy.pdf",
+      "status": "In Progress",
+      "offerPackage": "-",
+      "placedCompany": "-"
+    },
+    {
+      "id": "STU005",
+      "name": "Rohan Gupta",
+      "email": "rohan.gupta@campus.edu",
+      "phone": "+91 98765 43214",
+      "branch": "Mechanical Engineering",
+      "cgpa": 6.9,
+      "class10Pct": 79.5,
+      "class12Pct": 76,
+      "backlogs": 1,
+      "graduationYear": 2026,
+      "skills": [
+        "AutoCAD",
+        "SolidWorks",
+        "Python",
+        "MATLAB"
+      ],
+      "resumeUrl": "https://example.com/resumes/rohan_gupta.pdf",
+      "status": "Unplaced",
+      "offerPackage": "-",
+      "placedCompany": "-"
+    },
+    {
+      "id": "STU006",
+      "name": "Sneha Kulkarni",
+      "email": "sneha.kulkarni@campus.edu",
+      "phone": "+91 98765 43215",
+      "branch": "Computer Science",
+      "cgpa": 9.5,
+      "class10Pct": 98.2,
+      "class12Pct": 97,
+      "backlogs": 0,
+      "graduationYear": 2026,
+      "skills": [
+        "Machine Learning",
+        "PyTorch",
+        "C++",
+        "System Design"
+      ],
+      "resumeUrl": "https://example.com/resumes/sneha_kulkarni.pdf",
+      "status": "Placed",
+      "offerPackage": "₹32.0 LPA",
+      "placedCompany": "Google"
+    },
+    {
+      "id": "STU3494",
+      "name": "Vikramaditya Singh",
+      "email": "vikram@campus.edu",
+      "phone": "+91 98000 00000",
+      "branch": "Computer Science",
+      "cgpa": 8.8,
+      "class10Pct": 90,
+      "class12Pct": 88,
+      "backlogs": 0,
+      "graduationYear": 2026,
+      "skills": [
+        "Programming",
+        "Problem Solving"
+      ],
+      "resumeUrl": "https://example.com/resumes/default.pdf",
+      "status": "Unplaced",
+      "offerPackage": "-",
+      "placedCompany": "-"
+    },
+    {
+      "id": "STU1652",
+      "name": "asandsnc",
+      "email": "djfnjvn@gmail.com",
+      "phone": "+91 98000 00000",
+      "branch": "Computer Science",
+      "cgpa": 8,
+      "class10Pct": 90,
+      "class12Pct": 88,
+      "backlogs": 0,
+      "graduationYear": 2026,
+      "skills": [
+        "Programming",
+        "Problem Solving"
+      ],
+      "resumeUrl": "https://example.com/resumes/default.pdf",
+      "status": "Unplaced",
+      "offerPackage": "-",
+      "placedCompany": "-"
+    }
+  ],
+  "companies": [
+    {
+      "id": "COMP001",
+      "name": "Google",
+      "sector": "Cloud & Artificial Intelligence",
+      "website": "https://careers.google.com",
+      "hrName": "Sarah Jenkins",
+      "hrEmail": "s.jenkins@google.com",
+      "hrPhone": "+1 650 253 0000",
+      "location": "Bengaluru / Hyderabad",
+      "rating": 4.9,
+      "status": "Approved Partner"
+    },
+    {
+      "id": "COMP002",
+      "name": "Microsoft",
+      "sector": "Enterprise Software & Cloud",
+      "website": "https://careers.microsoft.com",
+      "hrName": "Rajesh Kumar",
+      "hrEmail": "rajesh.k@microsoft.com",
+      "hrPhone": "+91 80 4010 2000",
+      "location": "Hyderabad",
+      "rating": 4.8,
+      "status": "Approved Partner"
+    },
+    {
+      "id": "COMP003",
+      "name": "TCS Digital",
+      "sector": "IT Services & Digital Transformation",
+      "website": "https://www.tcs.com",
+      "hrName": "Anand Mohan",
+      "hrEmail": "anand.m@tcs.com",
+      "hrPhone": "+91 22 6778 9999",
+      "location": "Pan India",
+      "rating": 4.3,
+      "status": "Approved Partner"
+    },
+    {
+      "id": "COMP004",
+      "name": "Innovate AI",
+      "sector": "Generative AI Startup",
+      "website": "https://innovate.ai",
+      "hrName": "Meera Joshi",
+      "hrEmail": "meera@innovate.ai",
+      "hrPhone": "+91 20 6600 1122",
+      "location": "Pune",
+      "rating": 4.7,
+      "status": "Approved Partner"
+    },
+    {
+      "id": "COMP005",
+      "name": "Accenture",
+      "sector": "Management & IT Consulting",
+      "website": "https://www.accenture.com",
+      "hrName": "Kavita Rao",
+      "hrEmail": "kavita.rao@accenture.com",
+      "hrPhone": "+91 124 400 5000",
+      "location": "Gurgaon / Bengaluru",
+      "rating": 4.5,
+      "status": "Approved Partner"
+    }
+  ],
+  "drives": [
+    {
+      "id": "DRV001",
+      "companyId": "COMP001",
+      "company": "Google",
+      "role": "Associate Software Engineer",
+      "ctc": "₹32.0 LPA",
+      "minCgpa": 8.5,
+      "maxBacklogs": 0,
+      "eligibleBranches": [
+        "Computer Science",
+        "Information Technology"
+      ],
+      "location": "Bengaluru",
+      "deadline": "2026-09-15",
+      "status": "Active",
+      "description": "Building scalable cloud microservices, developer platforms, and next-gen AI search infrastructure.",
+      "rounds": [
+        "Resume Screening",
+        "Online Coding Round",
+        "Tech Interview 1",
+        "Tech Interview 2",
+        "HR Interview"
+      ]
+    },
+    {
+      "id": "DRV002",
+      "companyId": "COMP002",
+      "company": "Microsoft",
+      "role": "Cloud Solutions Engineer",
+      "ctc": "₹28.5 LPA",
+      "minCgpa": 8,
+      "maxBacklogs": 0,
+      "eligibleBranches": [
+        "Computer Science",
+        "Information Technology",
+        "Electronics & Comm"
+      ],
+      "location": "Hyderabad",
+      "deadline": "2026-09-10",
+      "status": "Active",
+      "description": "Architecting Azure cloud services, infrastructure automation, and customer success solutions.",
+      "rounds": [
+        "Online Assessment",
+        "Technical Interview 1",
+        "System Design",
+        "AA Round"
+      ]
+    },
+    {
+      "id": "DRV003",
+      "companyId": "COMP003",
+      "company": "TCS Digital",
+      "role": "Systems Engineer Specialist",
+      "ctc": "₹9.0 LPA",
+      "minCgpa": 7,
+      "maxBacklogs": 1,
+      "eligibleBranches": [
+        "Computer Science",
+        "Information Technology",
+        "Electronics & Comm",
+        "Mechanical Engineering"
+      ],
+      "location": "Pan India",
+      "deadline": "2026-09-20",
+      "status": "Active",
+      "description": "Full-stack enterprise application engineering and digital transformation projects.",
+      "rounds": [
+        "TCS NQT Test",
+        "Technical Interview",
+        "HR Interview"
+      ]
+    },
+    {
+      "id": "DRV004",
+      "companyId": "COMP004",
+      "company": "Innovate AI",
+      "role": "ML Engineer",
+      "ctc": "₹24.0 LPA",
+      "minCgpa": 8.5,
+      "maxBacklogs": 0,
+      "eligibleBranches": [
+        "Computer Science",
+        "Information Technology"
+      ],
+      "location": "Pune",
+      "deadline": "2026-08-20",
+      "status": "Closed",
+      "description": "Developing LLM fine-tuning pipelines, computer vision models, and real-time inference engines.",
+      "rounds": [
+        "Take-Home Task",
+        "Tech Interview 1",
+        "Tech Interview 2",
+        "Founder Round"
+      ]
+    },
+    {
+      "id": "DRV005",
+      "companyId": "COMP005",
+      "company": "Accenture",
+      "role": "Technology Analyst",
+      "ctc": "₹11.5 LPA",
+      "minCgpa": 6.5,
+      "maxBacklogs": 1,
+      "eligibleBranches": [
+        "Computer Science",
+        "Information Technology",
+        "Electronics & Comm",
+        "Mechanical Engineering"
+      ],
+      "location": "Gurgaon / Bengaluru",
+      "deadline": "2026-09-25",
+      "status": "Active",
+      "description": "Consulting clients on enterprise IT modernization, SAP integrations, and cloud migrations.",
+      "rounds": [
+        "Cognitive & Coding Test",
+        "Communication Assessment",
+        "Technical & HR Interview"
+      ]
+    }
+  ],
+  "applications": [
+    {
+      "id": "APP001",
+      "studentId": "STU001",
+      "driveId": "DRV004",
+      "company": "Innovate AI",
+      "role": "ML Engineer",
+      "appliedDate": "2026-08-10",
+      "status": "Offer Accepted",
+      "currentStage": "Offer Letter",
+      "stageIndex": 4,
+      "history": [
+        {
+          "stage": "Applied",
+          "date": "2026-08-10",
+          "note": "Application submitted"
+        },
+        {
+          "stage": "Take-Home Task",
+          "date": "2026-08-12",
+          "note": "Score: 94/100"
+        },
+        {
+          "stage": "Tech Interview 1",
+          "date": "2026-08-15",
+          "note": "Cleared ML fundamentals"
+        },
+        {
+          "stage": "Founder Round",
+          "date": "2026-08-18",
+          "note": "Strong cultural alignment"
+        },
+        {
+          "stage": "Offer Letter",
+          "date": "2026-08-20",
+          "note": "Offer package ₹24.0 LPA accepted"
+        }
+      ]
+    },
+    {
+      "id": "APP002",
+      "studentId": "STU002",
+      "driveId": "DRV002",
+      "company": "Microsoft",
+      "role": "Cloud Solutions Engineer",
+      "appliedDate": "2026-08-12",
+      "status": "Offer Accepted",
+      "currentStage": "Offer Letter",
+      "stageIndex": 3,
+      "history": [
+        {
+          "stage": "Applied",
+          "date": "2026-08-12",
+          "note": "Application submitted"
+        },
+        {
+          "stage": "Online Assessment",
+          "date": "2026-08-14",
+          "note": "Passed all test cases"
+        },
+        {
+          "stage": "Technical Interview",
+          "date": "2026-08-19",
+          "note": "Excelled in Cloud Architecture"
+        },
+        {
+          "stage": "Offer Letter",
+          "date": "2026-08-22",
+          "note": "Offer package ₹28.5 LPA accepted"
+        }
+      ]
+    },
+    {
+      "id": "APP003",
+      "studentId": "STU006",
+      "driveId": "DRV001",
+      "company": "Google",
+      "role": "Associate Software Engineer",
+      "appliedDate": "2026-08-05",
+      "status": "Offer Accepted",
+      "currentStage": "Offer Letter",
+      "stageIndex": 4,
+      "history": [
+        {
+          "stage": "Applied",
+          "date": "2026-08-05",
+          "note": "Application submitted"
+        },
+        {
+          "stage": "Online Coding",
+          "date": "2026-08-08",
+          "note": "Completed 3/3 problems"
+        },
+        {
+          "stage": "Tech Interview 1 & 2",
+          "date": "2026-08-14",
+          "note": "Strong DS & Algo rating"
+        },
+        {
+          "stage": "HR Interview",
+          "date": "2026-08-18",
+          "note": "Leadership principles verified"
+        },
+        {
+          "stage": "Offer Letter",
+          "date": "2026-08-24",
+          "note": "Offer package ₹32.0 LPA accepted"
+        }
+      ]
+    },
+    {
+      "id": "APP004",
+      "studentId": "STU004",
+      "driveId": "DRV001",
+      "company": "Google",
+      "role": "Associate Software Engineer",
+      "appliedDate": "2026-08-15",
+      "status": "Technical Interview",
+      "currentStage": "Tech Interview 1",
+      "stageIndex": 2,
+      "history": [
+        {
+          "stage": "Applied",
+          "date": "2026-08-15",
+          "note": "Application submitted"
+        },
+        {
+          "stage": "Online Coding",
+          "date": "2026-08-19",
+          "note": "Shortlisted for interview"
+        },
+        {
+          "stage": "Tech Interview 1",
+          "date": "2026-08-29",
+          "note": "Scheduled for Aug 29, 11:00 AM"
+        }
+      ]
+    },
+    {
+      "id": "APP005",
+      "studentId": "STU004",
+      "driveId": "DRV002",
+      "company": "Microsoft",
+      "role": "Cloud Solutions Engineer",
+      "appliedDate": "2026-08-16",
+      "status": "Shortlisted",
+      "currentStage": "Online Assessment",
+      "stageIndex": 1,
+      "history": [
+        {
+          "stage": "Applied",
+          "date": "2026-08-16",
+          "note": "Application submitted"
+        },
+        {
+          "stage": "Online Assessment",
+          "date": "2026-08-30",
+          "note": "Link active until Aug 30"
+        }
+      ]
+    },
+    {
+      "id": "APP006",
+      "studentId": "STU003",
+      "driveId": "DRV003",
+      "company": "TCS Digital",
+      "role": "Systems Engineer Specialist",
+      "appliedDate": "2026-08-20",
+      "status": "Shortlisted",
+      "currentStage": "Technical Interview",
+      "stageIndex": 1,
+      "history": [
+        {
+          "stage": "Applied",
+          "date": "2026-08-20",
+          "note": "Application submitted"
+        },
+        {
+          "stage": "Shortlisted",
+          "date": "2026-08-22",
+          "note": "Shortlisted for TCS Technical Interview"
+        }
+      ]
+    }
+  ],
+  "shortlists": [
+    {
+      "id": "SHL001",
+      "driveId": "DRV001",
+      "studentId": "STU006",
+      "studentName": "Sneha Kulkarni",
+      "company": "Google",
+      "status": "Selected"
+    },
+    {
+      "id": "SHL002",
+      "driveId": "DRV001",
+      "studentId": "STU004",
+      "studentName": "Ananya Roy",
+      "company": "Google",
+      "status": "Interview Scheduled"
+    },
+    {
+      "id": "SHL003",
+      "driveId": "DRV002",
+      "studentId": "STU002",
+      "studentName": "Priya Patel",
+      "company": "Microsoft",
+      "status": "Selected"
+    },
+    {
+      "id": "SHL004",
+      "driveId": "DRV003",
+      "studentId": "STU003",
+      "studentName": "Amit Verma",
+      "company": "TCS Digital",
+      "status": "Interview Scheduled"
+    }
+  ],
+  "interviews": [
+    {
+      "id": "INT001",
+      "driveId": "DRV001",
+      "studentId": "STU004",
+      "studentName": "Ananya Roy",
+      "company": "Google",
+      "roundName": "Tech Interview 1 (DS & Algo)",
+      "date": "2026-08-29",
+      "time": "11:00 AM - 12:00 PM",
+      "meetingLink": "https://meet.google.com/abc-xyz-123",
+      "interviewer": "Sarah Jenkins (Google Engineering)",
+      "status": "Scheduled"
+    },
+    {
+      "id": "INT002",
+      "driveId": "DRV003",
+      "studentId": "STU003",
+      "studentName": "Amit Verma",
+      "company": "TCS Digital",
+      "roundName": "Technical & Coding Interview",
+      "date": "2026-08-30",
+      "time": "02:30 PM - 03:30 PM",
+      "meetingLink": "https://teams.microsoft.com/l/meetup/tcs-demo",
+      "interviewer": "Anand Mohan (TCS Tech Lead)",
+      "status": "Scheduled"
+    }
+  ],
+  "placements": [
+    {
+      "id": "PLC001",
+      "studentId": "STU006",
+      "studentName": "Sneha Kulkarni",
+      "branch": "Computer Science",
+      "company": "Google",
+      "role": "Associate Software Engineer",
+      "package": "₹32.0 LPA",
+      "placedDate": "2026-08-24",
+      "status": "Offer Accepted"
+    },
+    {
+      "id": "PLC002",
+      "studentId": "STU002",
+      "studentName": "Priya Patel",
+      "branch": "Information Technology",
+      "company": "Microsoft",
+      "role": "Cloud Solutions Engineer",
+      "package": "₹28.5 LPA",
+      "placedDate": "2026-08-22",
+      "status": "Offer Accepted"
+    },
+    {
+      "id": "PLC003",
+      "studentId": "STU001",
+      "studentName": "Rahul Sharma",
+      "branch": "Computer Science",
+      "company": "Innovate AI",
+      "role": "ML Engineer",
+      "package": "₹24.0 LPA",
+      "placedDate": "2026-08-20",
+      "status": "Offer Accepted"
+    }
+  ],
+  "notifications": [
+    {
+      "id": "NTC001",
+      "title": "Google Technical Interview Slot Allotted",
+      "target": "STU004",
+      "date": "2026-08-27",
+      "message": "Your Tech Interview 1 for Google Associate Software Engineer is scheduled on Aug 29 at 11:00 AM."
+    },
+    {
+      "id": "NTC002",
+      "title": "Microsoft Placement Drive Results Declared",
+      "target": "All Students",
+      "date": "2026-08-22",
+      "message": "Congratulations to Priya Patel (IT) for receiving an offer letter from Microsoft at ₹28.5 LPA!"
+    }
+  ],
+  "documents": [
+    {
+      "id": "DOC001",
+      "type": "Resume",
+      "studentId": "STU001",
+      "url": "https://example.com/resumes/rahul_sharma.pdf"
+    },
+    {
+      "id": "DOC002",
+      "type": "Offer Letter",
+      "studentId": "STU006",
+      "url": "https://example.com/offers/google_sneha.pdf"
+    }
+  ]
+}
