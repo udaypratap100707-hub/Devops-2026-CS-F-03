@@ -14,6 +14,28 @@ pipeline {
             }
         }
 
+        stage('Check Jenkins Report Commit') {
+            steps {
+                script {
+
+                    def lastCommitMessage = bat(
+                        script: '@git log -1 --pretty=%B',
+                        returnStdout: true
+                    ).trim()
+
+                    echo "Last commit message: ${lastCommitMessage}"
+
+                    if (lastCommitMessage.contains('[skip ci]')) {
+                        echo 'Jenkins report commit detected.'
+                        echo 'Skipping this build to prevent CI loop.'
+
+                        currentBuild.result = 'NOT_BUILT'
+                        error('Skipping Jenkins-generated report commit.')
+                    }
+                }
+            }
+        }
+
         stage('Install Dependencies') {
             steps {
                 echo 'Installing project dependencies...'
@@ -50,6 +72,7 @@ pipeline {
                 script {
 
                     def branch = env.BRANCH_NAME ?: 'unknown'
+
                     def commit = bat(
                         script: '@git rev-parse --short HEAD',
                         returnStdout: true
@@ -75,8 +98,8 @@ pipeline {
                         echo ========================================== >> feedback\\latest_report.txt
                         echo              BUILD RESULT                  >> feedback\\latest_report.txt
                         echo ========================================== >> feedback\\latest_report.txt
-
                         echo. >> feedback\\latest_report.txt
+
                         echo Project checkout: SUCCESS >> feedback\\latest_report.txt
                         echo Dependencies: SUCCESS >> feedback\\latest_report.txt
                         echo Project tests: SUCCESS >> feedback\\latest_report.txt
@@ -114,12 +137,14 @@ pipeline {
 
                         git diff --cached --quiet
 
-                        if %ERRORLEVEL% EQU 0 (
-                            echo No report changes to commit.
-                        ) else (
-                            git commit -m "Update Jenkins CI feedback report"
+                        if errorlevel 1 (
+                            echo Changes detected in feedback report.
+
+                            git commit -m "Update Jenkins CI feedback report [skip ci]"
 
                             git push https://%GIT_USERNAME%:%GIT_PASSWORD%@github.com/udaypratap100707-hub/Devops-2026-CS-F-03.git HEAD:%BRANCH_NAME%
+                        ) else (
+                            echo No report changes to commit.
                         )
                     '''
                 }
@@ -140,6 +165,10 @@ pipeline {
             echo '======================================'
             echo 'JENKINS CI FAILED'
             echo '======================================'
+        }
+
+        always {
+            echo 'Jenkins CI pipeline completed.'
         }
     }
 }
