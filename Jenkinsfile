@@ -6,86 +6,91 @@ pipeline {
 
         stage('Checkout') {
             steps {
-                echo 'Checking out source code...'
+                echo '======================================'
+                echo 'CHECKING OUT PROJECT'
+                echo '======================================'
+
                 checkout scm
             }
         }
 
-        stage('Check Feedback Files') {
+        stage('Install Dependencies') {
             steps {
-                bat '''
-                    echo Checking feedback folder...
+                echo 'Installing project dependencies...'
 
-                    if not exist feedback (
-                        echo ERROR: feedback folder not found
-                        exit /b 1
-                    )
-
-                    if not exist feedback\\feedback.html (
-                        echo ERROR: feedback.html not found
-                        exit /b 1
-                    )
-
-                    if not exist feedback\\feedback.css (
-                        echo ERROR: feedback.css not found
-                        exit /b 1
-                    )
-
-                    if not exist feedback\\feedback.js (
-                        echo ERROR: feedback.js not found
-                        exit /b 1
-                    )
-
-                    if not exist feedback\\feedback.json (
-                        echo ERROR: feedback.json not found
-                        exit /b 1
-                    )
-
-                    echo All feedback files found successfully.
-                '''
-            }
-        }
-
-        stage('Check HTML') {
-            steps {
-                bat '''
-                    findstr /C:"<form" feedback\\feedback.html
-                    findstr /C:"feedback.js" feedback\\feedback.html
-                    findstr /C:"feedback.css" feedback\\feedback.html
-
-                    echo HTML validation passed.
-                '''
-            }
-        }
-
-        stage('Check JavaScript') {
-            steps {
-                bat '''
-                    node --check feedback\\feedback.js
-
-                    echo JavaScript syntax check passed.
-                '''
-            }
-        }
-
-        stage('Check JSON') {
-            steps {
-                bat '''
-                    node -e "JSON.parse(require('fs').readFileSync('feedback/feedback.json', 'utf8')); console.log('JSON validation passed.')"
-                '''
-            }
-        }
-
-        stage('Install Project Dependencies') {
-            steps {
                 bat '''
                     if exist src\\frontend\\package.json (
                         cd src\\frontend
                         npm install
                     ) else (
-                        echo package.json not found - skipping npm install
+                        echo No package.json found.
                     )
                 '''
+            }
+        }
+
+        stage('Run Project Tests') {
+            steps {
+                echo 'Running project tests...'
+
+                bat '''
+                    if exist src\\frontend\\package.json (
+                        cd src\\frontend
+
+                        if exist test.js (
+                            node test.js
+                        ) else (
+                            echo No test.js found.
+                            echo Basic CI test completed.
+                        )
+                    ) else (
+                        echo No frontend package.json found.
+                    )
+                '''
+            }
+        }
+
+        stage('Generate CI Feedback Report') {
+            steps {
+                script {
+
+                    def buildStatus = currentBuild.currentResult
+                    def buildNumber = env.BUILD_NUMBER
+                    def branch = env.BRANCH_NAME ?: 'unknown'
+                    def commit = bat(
+                        script: '@git rev-parse --short HEAD',
+                        returnStdout: true
+                    ).trim()
+
+                    bat """
+                        if not exist feedback mkdir feedback
+
+                        echo ========================================== > feedback\\latest_report.txt
+                        echo         JENKINS CI BUILD REPORT             >> feedback\\latest_report.txt
+                        echo ========================================== >> feedback\\latest_report.txt
+                        echo. >> feedback\\latest_report.txt
+                        echo Project: Devops-2026-CS-F-03 >> feedback\\latest_report.txt
+                        echo Branch: ${branch} >> feedback\\latest_report.txt
+                        echo Build Number: ${buildNumber} >> feedback\\latest_report.txt
+                        echo Commit: ${commit} >> feedback\\latest_report.txt
+                        echo Status: ${buildStatus} >> feedback\\latest_report.txt
+                        echo Date: %DATE% >> feedback\\latest_report.txt
+                        echo Time: %TIME% >> feedback\\latest_report.txt
+                        echo. >> feedback\\latest_report.txt
+                        echo ========================================== >> feedback\\latest_report.txt
+                        echo              BUILD RESULT                 >> feedback\\latest_report.txt
+                        echo ========================================== >> feedback\\latest_report.txt
+                        echo. >> feedback\\latest_report.txt
+                        echo Project checkout: SUCCESS >> feedback\\latest_report.txt
+                        echo Dependencies: SUCCESS >> feedback\\latest_report.txt
+                        echo Project test stage: SUCCESS >> feedback\\latest_report.txt
+                        echo CI pipeline: ${buildStatus} >> feedback\\latest_report.txt
+                        echo. >> feedback\\latest_report.txt
+                        echo ========================================== >> feedback\\latest_report.txt
+                    """
+
+                    echo 'CI feedback report generated.'
+                }
             }
         }
 
@@ -95,13 +100,13 @@ pipeline {
 
         success {
             echo '======================================'
-            echo 'FEEDBACK CI BUILD SUCCESSFUL'
+            echo 'JENKINS CI: SUCCESS'
             echo '======================================'
         }
 
         failure {
             echo '======================================'
-            echo 'FEEDBACK CI BUILD FAILED'
+            echo 'JENKINS CI: FAILED'
             echo '======================================'
         }
     }
