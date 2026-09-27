@@ -9,7 +9,7 @@ const DATA_FILE = path.join(__dirname, 'data', 'store.json');
 
 app.use(cors());
 app.use(express.json());
-app.use(express.static(path.join(__dirname, 'frontend', 'src')));
+app.use(express.static(path.join(__dirname, 'public')));
 
 function readData() {
   try {
