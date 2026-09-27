@@ -9,7 +9,7 @@ const DATA_FILE = path.join(__dirname, 'data', 'store.json');
 
 app.use(cors());
 app.use(express.json());
-app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.static(path.join(__dirname, 'frontend', 'src')));
 
 function readData() {
   try {
@@ -536,9 +536,9 @@ app.post('/api/notifications', (req, res) => {
 });
 
 // Start Server
-app.listen(PORT, () => {
+app.listen(PORT, '0.0.0.0', () => {
   console.log(`=================================================`);
   console.log(` Enterprise 4-Panel Placement Platform Active`);
-  console.log(` Listening on: http://localhost:${PORT}`);
+  console.log(` Listening on port: ${PORT}`);
   console.log(`=================================================`);
 });
