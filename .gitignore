@@ -1,4 +1,6 @@
-node_modules/
 .env
 *.log
 .DS_Store
+# Practice Student Registration
+practice/student-registration/node_modules/
+practice/student-registration/data/users.json
