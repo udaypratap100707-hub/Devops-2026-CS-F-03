@@ -1,0 +1,23 @@
+{
+  "name": "ci-jenkins",
+  "version": "1.0.0",
+  "description": "Student Registration System with Jenkins CI/CD",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "test": "node test.js"
+  },
+  "keywords": [
+    "student",
+    "registration",
+    "jenkins",
+    "docker"
+  ],
+  "author": "Uday Pratap Singh",
+  "license": "ISC",
+  "type": "commonjs",
+  "dependencies": {
+    "cors": "^2.8.6",
+    "express": "^5.2.1"
+  }
+}

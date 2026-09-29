@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Student Portal | Login</title>
+
+    <link rel="stylesheet" href="style.css">
+
+    <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+    >
+</head>
+
+<body class="auth-page">
+
+    <div class="background">
+        <div class="blob blob-one"></div>
+        <div class="blob blob-two"></div>
+        <div class="blob blob-three"></div>
+    </div>
+
+    <header class="topbar">
+        <div class="brand">
+            <div class="brand-icon">
+                <i class="fa-solid fa-graduation-cap"></i>
+            </div>
+
+            <span>Student<span class="brand-highlight">Portal</span></span>
+        </div>
+
+        <div class="top-link">
+            Don't have an account?
+            <a href="register.html">Register</a>
+        </div>
+    </header>
+
+
+    <main class="auth-container">
+
+        <section class="auth-intro">
+
+            <div class="intro-badge">
+                <i class="fa-solid fa-sparkles"></i>
+                STUDENT MANAGEMENT PLATFORM
+            </div>
+
+            <h1>
+                Welcome Back,
+                <span>Future Leader!</span>
+            </h1>
+
+            <p>
+                Login to your student account and continue your
+                journey towards a brighter future.
+            </p>
+
+            <div class="feature-list">
+
+                <div class="feature">
+                    <div class="feature-icon">
+                        <i class="fa-solid fa-user"></i>
+                    </div>
+
+                    <div>
+                        <strong>Access Your Profile</strong>
+                        <small>View and manage your information</small>
+                    </div>
+                </div>
+
+                <div class="feature">
+                    <div class="feature-icon">
+                        <i class="fa-solid fa-chart-line"></i>
+                    </div>
+
+                    <div>
+                        <strong>Track Your Progress</strong>
+                        <small>Keep your academic journey on track</small>
+                    </div>
+                </div>
+
+                <div class="feature">
+                    <div class="feature-icon">
+                        <i class="fa-solid fa-rocket"></i>
+                    </div>
+
+                    <div>
+                        <strong>Build Your Future</strong>
+                        <small>Turn your dreams into achievements</small>
+                    </div>
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <section class="auth-card">
+
+            <div class="card-header">
+                <div class="card-logo">
+                    <i class="fa-solid fa-graduation-cap"></i>
+                </div>
+
+                <h2>Student Login</h2>
+
+                <p>
+                    Enter your credentials to access your account
+                </p>
+            </div>
+
+
+            <form id="loginForm">
+
+                <div class="input-group">
+
+                    <label for="email">
+                        Email Address
+                    </label>
+
+                    <div class="input-wrapper">
+
+                        <i class="fa-regular fa-envelope"></i>
+
+                        <input
+                            type="email"
+                            id="email"
+                            placeholder="you@example.com"
+                            required
+                        >
+
+                    </div>
+
+                </div>
+
+
+                <div class="input-group">
+
+                    <label for="password">
+                        Password
+                    </label>
+
+                    <div class="input-wrapper">
+
+                        <i class="fa-solid fa-lock"></i>
+
+                        <input
+                            type="password"
+                            id="password"
+                            placeholder="Enter your password"
+                            required
+                        >
+
+                        <button
+                            type="button"
+                            class="password-toggle"
+                            onclick="togglePassword('password', this)"
+                        >
+                            <i class="fa-regular fa-eye"></i>
+                        </button>
+
+                    </div>
+
+                </div>
+
+
+                <div class="form-options">
+
+                    <label class="remember">
+                        <input type="checkbox">
+                        <span>Remember me</span>
+                    </label>
+
+                    <a href="#" onclick="return false;">
+                        Forgot Password?
+                    </a>
+
+                </div>
+
+
+                <button class="primary-btn" type="submit">
+
+                    <span>Login</span>
+
+                    <i class="fa-solid fa-arrow-right"></i>
+
+                </button>
+
+
+                <div id="message" class="message"></div>
+
+            </form>
+
+
+            <div class="divider">
+                <span>OR</span>
+            </div>
+
+
+            <p class="bottom-text">
+                Don't have an account?
+                <a href="register.html">Create Account</a>
+            </p>
+
+        </section>
+
+    </main>
+
+
+    <div class="copyright">
+        © 2026 Student Portal • Built for Students
+    </div>
+
+
+    <script src="script.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Student Portal | Registration</title>
+
+    <link rel="stylesheet" href="style.css">
+
+    <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+    >
+
+</head>
+
+<body class="register-page">
+
+    <div class="background">
+        <div class="blob blob-one"></div>
+        <div class="blob blob-two"></div>
+        <div class="blob blob-three"></div>
+    </div>
+
+
+    <header class="topbar light">
+
+        <div class="brand">
+
+            <div class="brand-icon">
+                <i class="fa-solid fa-graduation-cap"></i>
+            </div>
+
+            <span>
+                Student<span class="brand-highlight">Portal</span>
+            </span>
+
+        </div>
+
+
+        <div class="top-link">
+
+            Already have an account?
+
+            <a href="index.html">
+                Login
+            </a>
+
+        </div>
+
+    </header>
+
+
+    <main class="register-container">
+
+
+        <section class="register-intro">
+
+            <div class="intro-badge">
+                <i class="fa-solid fa-star"></i>
+                JOIN OUR COMMUNITY
+            </div>
+
+
+            <h1>
+                Start Your
+                <span>Journey Today.</span>
+            </h1>
+
+
+            <p>
+                Create your student account and unlock a smarter
+                way to manage your academic journey.
+            </p>
+
+
+            <div class="benefits">
+
+                <div class="benefit">
+
+                    <div class="benefit-icon">
+                        <i class="fa-solid fa-bolt"></i>
+                    </div>
+
+                    <div>
+                        <strong>Quick Registration</strong>
+                        <small>
+                            Simple and fast registration process
+                        </small>
+                    </div>
+
+                </div>
+
+
+                <div class="benefit">
+
+                    <div class="benefit-icon">
+                        <i class="fa-solid fa-shield-halved"></i>
+                    </div>
+
+                    <div>
+                        <strong>Secure Account</strong>
+                        <small>
+                            Keep your student information protected
+                        </small>
+                    </div>
+
+                </div>
+
+
+                <div class="benefit">
+
+                    <div class="benefit-icon">
+                        <i class="fa-solid fa-graduation-cap"></i>
+                    </div>
+
+                    <div>
+                        <strong>Student Dashboard</strong>
+                        <small>
+                            Access your information anytime
+                        </small>
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <div class="quote-card">
+
+                <i class="fa-solid fa-quote-left"></i>
+
+                <p>
+                    Education is the most powerful weapon
+                    which you can use to change the world.
+                </p>
+
+                <span>— Nelson Mandela</span>
+
+            </div>
+
+        </section>
+
+
+
+        <section class="register-card">
+
+            <div class="card-header">
+
+                <div class="card-logo">
+                    <i class="fa-solid fa-user-plus"></i>
+                </div>
+
+                <h2>Student Registration</h2>
+
+                <p>
+                    Fill in your details to create your account
+                </p>
+
+            </div>
+
+
+            <form id="registerForm">
+
+
+                <div class="two-columns">
+
+                    <div class="input-group">
+
+                        <label for="name">
+                            Full Name
+                        </label>
+
+                        <div class="input-wrapper">
+
+                            <i class="fa-regular fa-user"></i>
+
+                            <input
+                                type="text"
+                                id="name"
+                                placeholder="John Doe"
+                                required
+                            >
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="input-group">
+
+                        <label for="phone">
+                            Phone Number
+                        </label>
+
+                        <div class="input-wrapper">
+
+                            <i class="fa-solid fa-phone"></i>
+
+                            <input
+                                type="tel"
+                                id="phone"
+                                placeholder="9876543210"
+                                pattern="[0-9]{10}"
+                                maxlength="10"
+                                required
+                            >
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+
+                <div class="input-group">
+
+                    <label for="email">
+                        Email Address
+                    </label>
+
+                    <div class="input-wrapper">
+
+                        <i class="fa-regular fa-envelope"></i>
+
+                        <input
+                            type="email"
+                            id="email"
+                            placeholder="you@example.com"
+                            required
+                        >
+
+                    </div>
+
+                </div>
+
+
+
+                <div class="input-group">
+
+                    <label for="college">
+                        College Name
+                    </label>
+
+                    <div class="input-wrapper">
+
+                        <i class="fa-solid fa-building-columns"></i>
+
+                        <input
+                            type="text"
+                            id="college"
+                            placeholder="Enter your college"
+                            required
+                        >
+
+                    </div>
+
+                </div>
+
+
+
+                <div class="input-group">
+
+                    <label for="course">
+                        Course
+                    </label>
+
+                    <div class="input-wrapper select-wrapper">
+
+                        <i class="fa-solid fa-book-open"></i>
+
+                        <select id="course" required>
+
+                            <option value="">
+                                Select your course
+                            </option>
+
+                            <option value="B.Tech CSE">
+                                B.Tech CSE
+                            </option>
+
+                            <option value="B.Tech IT">
+                                B.Tech IT
+                            </option>
+
+                            <option value="B.Tech ECE">
+                                B.Tech ECE
+                            </option>
+
+                            <option value="B.Tech ME">
+                                B.Tech Mechanical
+                            </option>
+
+                            <option value="BCA">
+                                BCA
+                            </option>
+
+                            <option value="MCA">
+                                MCA
+                            </option>
+
+                        </select>
+
+                    </div>
+
+                </div>
+
+
+
+                <div class="two-columns">
+
+                    <div class="input-group">
+
+                        <label for="password">
+                            Password
+                        </label>
+
+                        <div class="input-wrapper">
+
+                            <i class="fa-solid fa-lock"></i>
+
+                            <input
+                                type="password"
+                                id="password"
+                                placeholder="Create password"
+                                minlength="6"
+                                required
+                            >
+
+                            <button
+                                type="button"
+                                class="password-toggle"
+                                onclick="togglePassword('password', this)"
+                            >
+                                <i class="fa-regular fa-eye"></i>
+                            </button>
+
+                        </div>
+
+                    </div>
+
+
+
+                    <div class="input-group">
+
+                        <label for="confirmPassword">
+                            Confirm Password
+                        </label>
+
+                        <div class="input-wrapper">
+
+                            <i class="fa-solid fa-lock"></i>
+
+                            <input
+                                type="password"
+                                id="confirmPassword"
+                                placeholder="Confirm password"
+                                minlength="6"
+                                required
+                            >
+
+                            <button
+                                type="button"
+                                class="password-toggle"
+                                onclick="togglePassword('confirmPassword', this)"
+                            >
+                                <i class="fa-regular fa-eye"></i>
+                            </button>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+
+                <label class="terms">
+
+                    <input type="checkbox" required>
+
+                    <span>
+                        I agree to the
+                        <a href="#" onclick="return false;">
+                            Terms & Conditions
+                        </a>
+                    </span>
+
+                </label>
+
+
+
+                <button class="primary-btn" type="submit">
+
+                    <span>Create Account</span>
+
+                    <i class="fa-solid fa-arrow-right"></i>
+
+                </button>
+
+
+                <div id="message" class="message"></div>
+
+            </form>
+
+
+            <p class="bottom-text">
+
+                Already have an account?
+
+                <a href="index.html">
+                    Login here
+                </a>
+
+            </p>
+
+        </section>
+
+    </main>
+
+
+    <script src="script.js"></script>
+
+</body>
+</html>

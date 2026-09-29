@@ -1,0 +1,8 @@
+node_modules/
+npm-debug.log
+.env
+.vscode/
+.idea/
+
+*.logdata/users.json
+public_backup/

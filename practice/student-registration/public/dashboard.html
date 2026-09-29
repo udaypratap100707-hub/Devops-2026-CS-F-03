@@ -1,0 +1,490 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Student Portal | Dashboard</title>
+
+    <link rel="stylesheet" href="style.css">
+
+    <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+    >
+
+</head>
+
+
+<body class="dashboard-page">
+
+
+    <aside class="sidebar">
+
+        <div class="sidebar-brand">
+
+            <div class="brand-icon">
+                <i class="fa-solid fa-graduation-cap"></i>
+            </div>
+
+            <span>
+                Student<span>Portal</span>
+            </span>
+
+        </div>
+
+
+        <nav>
+
+            <a class="active">
+                <i class="fa-solid fa-house"></i>
+                Dashboard
+            </a>
+
+            <a>
+                <i class="fa-solid fa-user"></i>
+                My Profile
+            </a>
+
+            <a>
+                <i class="fa-solid fa-book"></i>
+                My Courses
+            </a>
+
+            <a>
+                <i class="fa-solid fa-chart-line"></i>
+                Progress
+            </a>
+
+            <a>
+                <i class="fa-solid fa-gear"></i>
+                Settings
+            </a>
+
+        </nav>
+
+
+        <button id="logout" class="sidebar-logout">
+
+            <i class="fa-solid fa-right-from-bracket"></i>
+
+            Logout
+
+        </button>
+
+    </aside>
+
+
+
+    <main class="dashboard-main">
+
+
+        <header class="dashboard-header">
+
+            <div class="search-box">
+
+                <i class="fa-solid fa-magnifying-glass"></i>
+
+                <input
+                    type="text"
+                    placeholder="Search..."
+                >
+
+            </div>
+
+
+            <div class="header-right">
+
+                <button class="notification">
+
+                    <i class="fa-regular fa-bell"></i>
+
+                    <span>2</span>
+
+                </button>
+
+
+                <div class="user-mini">
+
+                    <div class="avatar" id="avatar">
+                        U
+                    </div>
+
+                    <div>
+
+                        <strong id="headerName">
+                            Student
+                        </strong>
+
+                        <small>
+                            Student
+                        </small>
+
+                    </div>
+
+                    <i class="fa-solid fa-chevron-down"></i>
+
+                </div>
+
+            </div>
+
+        </header>
+
+
+
+        <section class="welcome-banner">
+
+            <div>
+
+                <span>
+                    <i class="fa-regular fa-hand"></i>
+                    Welcome back,
+                </span>
+
+                <h1 id="welcomeName">
+                    Student!
+                </h1>
+
+                <p>
+                    Keep learning, keep growing.
+                    Your future is bright!
+                </p>
+
+            </div>
+
+
+            <div class="banner-decoration">
+
+                <i class="fa-solid fa-graduation-cap"></i>
+
+            </div>
+
+        </section>
+
+
+
+        <section class="stats-grid">
+
+
+            <div class="stat-card">
+
+                <div class="stat-icon blue">
+                    <i class="fa-regular fa-user"></i>
+                </div>
+
+                <div>
+                    <small>Student Name</small>
+                    <strong id="studentName">
+                        -
+                    </strong>
+                </div>
+
+            </div>
+
+
+            <div class="stat-card">
+
+                <div class="stat-icon purple">
+                    <i class="fa-regular fa-envelope"></i>
+                </div>
+
+                <div>
+                    <small>Email</small>
+                    <strong id="studentEmail">
+                        -
+                    </strong>
+                </div>
+
+            </div>
+
+
+            <div class="stat-card">
+
+                <div class="stat-icon green">
+                    <i class="fa-solid fa-building-columns"></i>
+                </div>
+
+                <div>
+                    <small>College</small>
+                    <strong id="studentCollege">
+                        -
+                    </strong>
+                </div>
+
+            </div>
+
+
+            <div class="stat-card">
+
+                <div class="stat-icon orange">
+                    <i class="fa-solid fa-book"></i>
+                </div>
+
+                <div>
+                    <small>Course</small>
+                    <strong id="studentCourse">
+                        -
+                    </strong>
+                </div>
+
+            </div>
+
+        </section>
+
+
+
+        <section class="dashboard-grid">
+
+
+            <div class="dashboard-card">
+
+                <div class="section-title">
+
+                    <div>
+                        <h2>Your Information</h2>
+                        <p>Account information</p>
+                    </div>
+
+                    <button class="icon-btn">
+                        <i class="fa-solid fa-pen"></i>
+                    </button>
+
+                </div>
+
+
+                <div class="info-list">
+
+                    <div class="info-row">
+
+                        <span>
+                            <i class="fa-regular fa-user"></i>
+                            Full Name
+                        </span>
+
+                        <strong id="infoName">
+                            -
+                        </strong>
+
+                    </div>
+
+
+                    <div class="info-row">
+
+                        <span>
+                            <i class="fa-regular fa-envelope"></i>
+                            Email
+                        </span>
+
+                        <strong id="infoEmail">
+                            -
+                        </strong>
+
+                    </div>
+
+
+                    <div class="info-row">
+
+                        <span>
+                            <i class="fa-solid fa-building-columns"></i>
+                            College
+                        </span>
+
+                        <strong id="infoCollege">
+                            -
+                        </strong>
+
+                    </div>
+
+
+                    <div class="info-row">
+
+                        <span>
+                            <i class="fa-solid fa-book-open"></i>
+                            Course
+                        </span>
+
+                        <strong id="infoCourse">
+                            -
+                        </strong>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+
+            <div class="dashboard-card">
+
+                <div class="section-title">
+
+                    <div>
+
+                        <h2>Quick Actions</h2>
+
+                        <p>
+                            Manage your account
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <div class="quick-actions">
+
+                    <button class="quick blue-action">
+
+                        <i class="fa-solid fa-user"></i>
+
+                        <span>
+                            View Profile
+                        </span>
+
+                        <i class="fa-solid fa-arrow-right"></i>
+
+                    </button>
+
+
+                    <button class="quick green-action">
+
+                        <i class="fa-solid fa-pen"></i>
+
+                        <span>
+                            Update Information
+                        </span>
+
+                        <i class="fa-solid fa-arrow-right"></i>
+
+                    </button>
+
+
+                    <button
+                        id="dashboardLogout"
+                        class="quick red-action"
+                    >
+
+                        <i class="fa-solid fa-right-from-bracket"></i>
+
+                        <span>
+                            Logout
+                        </span>
+
+                        <i class="fa-solid fa-arrow-right"></i>
+
+                    </button>
+
+                </div>
+
+            </div>
+
+
+        </section>
+
+
+
+        <section class="bottom-grid">
+
+
+            <div class="progress-card">
+
+                <div class="section-title">
+
+                    <div>
+
+                        <h2>Student Journey</h2>
+
+                        <p>
+                            Keep moving forward
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <div class="progress">
+
+                    <div class="progress-label">
+
+                        <span>
+                            Profile Completion
+                        </span>
+
+                        <strong>
+                            100%
+                        </strong>
+
+                    </div>
+
+                    <div class="progress-bar">
+
+                        <div class="progress-fill"></div>
+
+                    </div>
+
+                </div>
+
+
+                <div class="journey">
+
+                    <div class="journey-item completed">
+                        <i class="fa-solid fa-check"></i>
+                        <span>Account Created</span>
+                    </div>
+
+                    <div class="journey-item completed">
+                        <i class="fa-solid fa-check"></i>
+                        <span>Profile Added</span>
+                    </div>
+
+                    <div class="journey-item">
+                        <i class="fa-solid fa-rocket"></i>
+                        <span>Start Your Journey</span>
+                    </div>
+
+                </div>
+
+            </div>
+
+
+
+            <div class="quote-dashboard">
+
+                <i class="fa-solid fa-quote-left"></i>
+
+                <h3>
+                    Learn.
+                    Grow.
+                    <span>Succeed.</span>
+                </h3>
+
+                <p>
+                    "The future belongs to those who believe
+                    in the beauty of their dreams."
+                </p>
+
+                <small>
+                    — Eleanor Roosevelt
+                </small>
+
+            </div>
+
+        </section>
+
+
+    </main>
+
+
+    <script src="script.js"></script>
+
+</body>
+
+</html>
