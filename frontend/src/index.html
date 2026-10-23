@@ -32,28 +32,7 @@
 
       <!-- 1. SIGN IN FORM -->
       <div id="signInContainer">
-        <!-- Quick Demo Login Presets -->
-        <div class="demo-credentials-box">
-          <div class="demo-title"><i class="ri-flash-line"></i> Quick Demo Login (1-Click)</div>
-          <div class="demo-btn-grid">
-            <button class="demo-pill-btn" onclick="App.fillDemoLogin('admin@campus.edu', 'admin123')">
-              <span class="demo-role">System Admin</span>
-              <span class="demo-email">admin@campus.edu</span>
-            </button>
-            <button class="demo-pill-btn" onclick="App.fillDemoLogin('tpo@campus.edu', 'tpo123')">
-              <span class="demo-role">TPO Officer</span>
-              <span class="demo-email">tpo@campus.edu</span>
-            </button>
-            <button class="demo-pill-btn" onclick="App.fillDemoLogin('s.jenkins@google.com', 'recruiter123')">
-              <span class="demo-role">Google Recruiter</span>
-              <span class="demo-email">s.jenkins@google.com</span>
-            </button>
-            <button class="demo-pill-btn" onclick="App.fillDemoLogin('rahul.sharma@campus.edu', 'student123')">
-              <span class="demo-role">Student (Rahul)</span>
-              <span class="demo-email">rahul.sharma@campus.edu</span>
-            </button>
-          </div>
-        </div>
+        <p class="auth-note"><i class="ri-shield-check-line"></i> Admin and Placement Officer accounts are created by the system administrator.</p>
 
         <form onsubmit="App.handleLoginForm(event)">
           <div class="form-group">
@@ -80,7 +59,7 @@
       <div id="signUpContainer" style="display: none;">
         <form onsubmit="App.handleSignupForm(event)">
           <div class="form-group">
-            <label>Full Name</label>
+            <label id="regNameLabel">Full Name</label>
             <input type="text" id="regName" class="form-control" placeholder="e.g. Vikramaditya Singh" required>
           </div>
           <div class="form-group">
@@ -92,12 +71,10 @@
             <input type="password" id="regPassword" class="form-control" placeholder="Create strong password" required>
           </div>
           <div class="form-group">
-            <label>Account Persona / Role</label>
+            <label>I am registering as</label>
             <select id="regRole" class="form-control" onchange="App.handleRegRoleChange()">
-              <option value="student" selected>Student Candidate</option>
-              <option value="recruiter">Company Recruiter</option>
-              <option value="tpo">Placement Officer (TPO)</option>
-              <option value="admin">System Administrator</option>
+              <option value="student" selected>Candidate (Student)</option>
+              <option value="recruiter">Company (Recruiter)</option>
             </select>
           </div>
 
@@ -120,16 +97,37 @@
             </div>
           </div>
 
-          <!-- Dynamic Recruiter Fields -->
+          <!-- Dynamic Company Fields -->
           <div id="regRecruiterFields" style="display: none;">
             <div class="form-group">
               <label>Company Name</label>
               <input type="text" id="regCompanyName" class="form-control" placeholder="e.g. Oracle / Salesforce / IBM">
             </div>
+            <div class="form-group" style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px;">
+              <div>
+                <label>Industry Sector</label>
+                <input type="text" id="regSector" class="form-control" placeholder="e.g. Cloud & Databases">
+              </div>
+              <div>
+                <label>Location</label>
+                <input type="text" id="regLocation" class="form-control" placeholder="e.g. Bengaluru">
+              </div>
+            </div>
+            <div class="form-group" style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px;">
+              <div>
+                <label>Company Website</label>
+                <input type="url" id="regWebsite" class="form-control" placeholder="https://company.com">
+              </div>
+              <div>
+                <label>HR Phone</label>
+                <input type="text" id="regHrPhone" class="form-control" placeholder="+91 98000 00000">
+              </div>
+            </div>
+            <p class="auth-note"><i class="ri-time-line"></i> Company accounts are activated after the Placement Officer / Admin approves the request.</p>
           </div>
 
           <button type="submit" class="btn btn-primary" style="width: 100%; justify-content: center; padding: 12px; margin-top: 10px;">
-            <i class="ri-user-add-line"></i> Complete Registration
+            <i class="ri-user-add-line"></i> <span id="regSubmitLabel">Complete Registration</span>
           </button>
         </form>
       </div>
@@ -153,6 +151,11 @@
     </div>
 
     <div class="header-actions">
+      <!-- Backend connection status -->
+      <div class="conn-pill" id="connPill" title="Checking backend...">
+        <span class="conn-dot"></span><span class="conn-text">Connecting...</span>
+      </div>
+
       <!-- Theme Picker -->
       <div class="theme-picker">
         <button class="theme-toggle-btn" id="themeToggle" type="button" title="Change theme">
@@ -161,31 +164,6 @@
           <span id="themeLabel">Aurora Violet</span>
         </button>
         <div class="theme-menu" id="themeMenu"></div>
-      </div>
-
-      <!-- 4-Role Persona Switcher -->
-      <div class="role-switcher-box">
-        <label for="roleSelect"><i class="ri-swap-line"></i> Quick Persona:</label>
-        <select id="roleSelect" class="role-select">
-          <optgroup label="1. Admin Panel">
-            <option value="admin" selected>Admin: Dr. V. K. Sharma (Director)</option>
-          </optgroup>
-          <optgroup label="2. Placement Officer (TPO) Panel">
-            <option value="tpo">TPO: Prof. Archana Rao (TPO Head)</option>
-          </optgroup>
-          <optgroup label="3. Company / Recruiter Panel">
-            <option value="recruiter_google">Recruiter: Sarah Jenkins (Google HR)</option>
-            <option value="recruiter_microsoft">Recruiter: Rajesh Kumar (Microsoft HR)</option>
-          </optgroup>
-          <optgroup label="4. Student Panel">
-            <option value="STU001">Student: Rahul Sharma (CSE • 8.75 CGPA)</option>
-            <option value="STU002">Student: Priya Patel (IT • 9.20 CGPA)</option>
-            <option value="STU003">Student: Amit Verma (ECE • 7.40 CGPA)</option>
-            <option value="STU004">Student: Ananya Roy (CSE • 8.10 CGPA)</option>
-            <option value="STU005">Student: Rohan Gupta (ME • 6.90 CGPA)</option>
-            <option value="STU006">Student: Sneha Kulkarni (CSE • 9.50 CGPA)</option>
-          </optgroup>
-        </select>
       </div>
 
       <!-- User Info Badge -->
@@ -239,13 +217,16 @@
 
   <!-- Scripts -->
   <script src="js/theme.js"></script>
+  <script src="js/config.js"></script>
   <script src="js/api.js"></script>
   <script src="js/components.js"></script>
   <script src="js/admin.js"></script>
   <script src="js/tpo.js"></script>
   <script src="js/recruiter.js"></script>
   <script src="js/student.js"></script>
+  <script src="js/approvals.js"></script>
   <script src="js/devops.js"></script>
+  <script src="js/connection.js"></script>
   <script src="js/app.js"></script>
 </body>
 </html>

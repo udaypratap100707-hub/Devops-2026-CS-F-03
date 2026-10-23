@@ -33,3 +33,42 @@ code { font-family: 'JetBrains Mono', Consolas, monospace; font-size: .82rem; co
 }
 .api-body { color: var(--text-muted); }
 .api-status { margin-top: 12px; display: flex; align-items: center; gap: 10px; }
+
+/* Backend connection pill */
+.conn-pill {
+  display: inline-flex; align-items: center; gap: 8px; padding: 7px 12px; border-radius: 30px;
+  font-size: .75rem; font-weight: 600; background: var(--bg-card); border: 1px solid var(--border-color);
+  color: var(--text-muted); white-space: nowrap;
+}
+.conn-dot { width: 9px; height: 9px; border-radius: 50%; background: var(--text-dim); }
+.conn-pill.online { color: var(--success); border-color: rgba(16,185,129,.35); }
+.conn-pill.online .conn-dot { background: var(--success); box-shadow: 0 0 8px var(--success); animation: connPulse 2s infinite; }
+.conn-pill.offline { color: var(--danger); border-color: rgba(239,68,68,.4); }
+.conn-pill.offline .conn-dot { background: var(--danger); box-shadow: 0 0 8px var(--danger); }
+@keyframes connPulse { 50% { opacity: .35; } }
+@media (max-width: 1500px) { .conn-pill .conn-text { display: none; } .conn-pill { padding: 9px; } }
+
+/* Company requests + auth notes */
+.pending-badge {
+  margin-left: auto; min-width: 22px; height: 22px; padding: 0 6px; border-radius: 11px;
+  align-items: center; justify-content: center; font-size: .72rem; font-weight: 800;
+  background: var(--danger); color: #fff; box-shadow: 0 0 10px rgba(239,68,68,.5);
+}
+.req-tabs { display: flex; gap: 10px; margin-bottom: 20px; flex-wrap: wrap; }
+.req-tab {
+  display: inline-flex; align-items: center; gap: 8px; padding: 9px 16px; border-radius: 30px; cursor: pointer;
+  background: var(--bg-card); border: 1px solid var(--border-color); color: var(--text-muted);
+  font-family: inherit; font-weight: 600; font-size: .85rem; transition: var(--transition);
+}
+.req-tab:hover { border-color: var(--primary); color: var(--text-strong); }
+.req-tab.active { background: linear-gradient(135deg, var(--primary), var(--secondary)); border-color: transparent; color: #fff; }
+.req-count { background: rgba(var(--ink-rgb), .12); border-radius: 10px; padding: 1px 8px; font-size: .75rem; }
+.req-tab.active .req-count { background: rgba(255,255,255,.25); }
+.req-actions { display: flex; gap: 10px; justify-content: flex-end; padding-top: 14px; border-top: 1px solid var(--border-color); margin-top: 12px; }
+.auth-note { font-size: .78rem; color: var(--text-muted); margin: 0 0 16px; line-height: 1.5; }
+.auth-note i { color: var(--primary); }
+.access-pill { font-size: .7rem; padding: 2px 9px; border-radius: 20px; background: rgba(var(--primary-rgb), .15); color: var(--primary); white-space: nowrap; }
+.access-pill.pub { background: var(--success-bg); color: var(--success); }
+
+/* pop-ups must appear above the login screen (e.g. "Awaiting approval") */
+.modal-overlay { z-index: 5500; }
