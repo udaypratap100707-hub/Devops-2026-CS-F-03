@@ -220,6 +220,15 @@ const App = {
         <i class="ri-trophy-line nav-icon"></i>
         <span>Placement Ledger</span>
       </a>
+      <div class="nav-section-title">DEVOPS & TOOLS</div>
+      <a class="nav-item ${this.activeView === 'admin-monitor' ? 'active' : ''}" onclick="App.navigateTo('admin-monitor')">
+        <i class="ri-pulse-line nav-icon"></i>
+        <span>DevOps Monitor</span>
+      </a>
+      <a class="nav-item ${this.activeView === 'admin-api' ? 'active' : ''}" onclick="App.navigateTo('admin-api')">
+        <i class="ri-code-box-line nav-icon"></i>
+        <span>API Explorer</span>
+      </a>
     `;
   },
 
@@ -297,6 +306,7 @@ const App = {
   },
 
   navigateTo(viewName, params = {}) {
+    if (typeof DevOpsPortal !== 'undefined') DevOpsPortal.stopPolling();
     this.activeView = viewName;
     this.viewParams = params;
 
@@ -328,6 +338,12 @@ const App = {
         break;
       case 'admin-placements':
         AdminPortal.renderPlacementsView();
+        break;
+      case 'admin-monitor':
+        DevOpsPortal.renderMonitorView();
+        break;
+      case 'admin-api':
+        DevOpsPortal.renderApiExplorerView();
         break;
 
       // TPO Views

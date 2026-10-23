@@ -1,0 +1,42 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: placement-app
+  labels: { app: placement-app }
+spec:
+  replicas: 2
+  selector:
+    matchLabels: { app: placement-app }
+  template:
+    metadata:
+      labels: { app: placement-app }
+    spec:
+      containers:
+        - name: web
+          image: ghcr.io/<your-username>/<your-repo>:main
+          ports:
+            - containerPort: 3000
+          env:
+            - { name: NODE_ENV, value: production }
+          readinessProbe:
+            httpGet: { path: /api/health, port: 3000 }
+            initialDelaySeconds: 5
+            periodSeconds: 10
+          livenessProbe:
+            httpGet: { path: /api/health, port: 3000 }
+            initialDelaySeconds: 15
+            periodSeconds: 20
+          resources:
+            requests: { cpu: 100m, memory: 128Mi }
+            limits:   { cpu: 500m, memory: 256Mi }
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: placement-svc
+spec:
+  type: LoadBalancer
+  selector: { app: placement-app }
+  ports:
+    - port: 80
+      targetPort: 3000

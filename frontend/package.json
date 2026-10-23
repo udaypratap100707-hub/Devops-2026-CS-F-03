@@ -1,15 +1,19 @@
 {
   "name": "student-placement-system",
-  "version": "1.0.0",
-  "description": "Student Placement Management System with Admin and Student Panels",
+  "version": "1.1.0",
+  "description": "Student Placement Management System with Admin, TPO, Recruiter and Student panels, DevOps monitor and API explorer",
   "main": "server.js",
   "scripts": {
     "start": "node server.js",
-    "dev": "node server.js",
+    "dev": "node --watch server.js",
+    "lint": "node scripts/lint.js",
     "test": "node --test"
   },
   "dependencies": {
     "cors": "^2.8.5",
     "express": "^4.19.2"
+  },
+  "engines": {
+    "node": ">=18"
   }
 }

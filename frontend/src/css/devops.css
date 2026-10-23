@@ -1,0 +1,35 @@
+/* DevOps Monitor + API Explorer styling (theme-aware) */
+.loading-state { color: var(--text-muted); padding: 40px; text-align: center; }
+.chart-fill-warn { background: linear-gradient(90deg, var(--warning), var(--danger)); }
+
+.pipe-row { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 6px; padding: 8px 0; }
+.pipe-stage { display: flex; flex-direction: column; align-items: center; gap: 4px; text-align: center; min-width: 84px; }
+.pipe-stage strong { font-size: .8rem; color: var(--text-strong); }
+.pipe-stage span { font-size: .68rem; color: var(--text-muted); }
+.pipe-icon {
+  width: 46px; height: 46px; border-radius: 14px; display: flex; align-items: center; justify-content: center;
+  font-size: 1.3rem; color: #fff; background: linear-gradient(135deg, var(--primary), var(--secondary));
+  box-shadow: 0 0 16px rgba(var(--primary-rgb), .35);
+}
+.pipe-arrow { color: var(--text-dim); font-size: 1.4rem; }
+
+.method-pill {
+  display: inline-block; min-width: 54px; text-align: center; padding: 3px 8px; border-radius: 6px;
+  font-size: .7rem; font-weight: 800; letter-spacing: .04em; color: #fff;
+}
+.m-GET { background: #059669; } .m-POST { background: #2563eb; }
+.m-PUT { background: #d97706; } .m-DELETE { background: #dc2626; } .m-PATCH { background: #7c3aed; }
+
+code { font-family: 'JetBrains Mono', Consolas, monospace; font-size: .82rem; color: var(--accent-cyan); }
+.api-row { padding: 16px 20px; margin-bottom: 12px; }
+.api-head { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; }
+.api-path { font-weight: 700; color: var(--text-strong); }
+.api-desc { color: var(--text-muted); font-size: .85rem; flex: 1; min-width: 180px; }
+.api-actions { display: flex; gap: 8px; margin-left: auto; }
+.api-pre {
+  margin-top: 12px; padding: 12px 14px; background: rgba(var(--ink-rgb), .05); border: 1px solid var(--border-color);
+  border-radius: var(--radius-sm); color: var(--text-main); font-family: Consolas, monospace; font-size: .78rem;
+  max-height: 280px; overflow: auto; white-space: pre-wrap; word-break: break-word;
+}
+.api-body { color: var(--text-muted); }
+.api-status { margin-top: 12px; display: flex; align-items: center; gap: 10px; }

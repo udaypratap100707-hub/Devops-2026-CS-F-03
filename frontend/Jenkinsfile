@@ -1,0 +1,21 @@
+// Declarative pipeline (alternative to GitHub Actions)
+pipeline {
+  agent any
+  tools { nodejs 'node20' }          // configure a NodeJS tool named node20 in Jenkins
+  environment { IMAGE = "student-placement-system:${env.BUILD_NUMBER}" }
+  stages {
+    stage('Checkout') { steps { checkout scm } }
+    stage('Install')  { steps { sh 'npm ci' } }
+    stage('Lint')     { steps { sh 'npm run lint' } }
+    stage('Test')     { steps { sh 'npm test' } }
+    stage('Docker Build') { steps { sh 'docker build -t $IMAGE --build-arg GIT_SHA=$GIT_COMMIT .' } }
+    stage('Deploy') {
+      when { branch 'main' }
+      steps { sh 'docker compose up -d --build' }
+    }
+  }
+  post {
+    success { echo 'Pipeline passed' }
+    failure { echo 'Pipeline failed' }
+  }
+}

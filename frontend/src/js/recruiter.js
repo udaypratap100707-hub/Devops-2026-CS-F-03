@@ -21,7 +21,7 @@ const RecruiterPortal = {
         <div class="panel-card" style="margin-bottom: 16px;">
           <div style="display: flex; justify-content: space-between; align-items: flex-start;">
             <div>
-              <h3 style="color: #fff;">${d.role}</h3>
+              <h3 style="color: var(--text-strong);">${d.role}</h3>
               <p style="color: var(--text-muted); font-size: 0.85rem;">CTC: <strong style="color: var(--success);">${d.ctc}</strong> • Min CGPA: ${d.minCgpa}</p>
             </div>
             ${renderStatusBadge(d.status)}
@@ -88,7 +88,7 @@ const RecruiterPortal = {
             <tr>
               <td><strong>${a.studentId}</strong></td>
               <td>
-                <div style="font-weight: 600; color: #fff;">${student.name || a.studentId}</div>
+                <div style="font-weight: 600; color: var(--text-strong);">${student.name || a.studentId}</div>
                 <div style="font-size: 0.75rem; color: var(--text-muted);">${student.email || ''}</div>
               </td>
               <td>${student.branch || '-'}</td>

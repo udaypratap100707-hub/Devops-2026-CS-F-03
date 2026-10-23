@@ -26,7 +26,7 @@ const AdminPortal = {
       let activeDrivesListHtml = drives.slice(0, 3).map(d => `
         <div style="display: flex; justify-content: space-between; align-items: center; padding: 12px 0; border-bottom: 1px solid var(--border-color);">
           <div>
-            <strong style="color: #fff;">${d.company}</strong>
+            <strong style="color: var(--text-strong);">${d.company}</strong>
             <div style="font-size: 0.8rem; color: var(--text-muted);">${d.role} • ${d.location}</div>
           </div>
           <div style="text-align: right;">
@@ -322,7 +322,7 @@ const AdminPortal = {
       <tr>
         <td><strong>${s.id}</strong></td>
         <td>
-          <div style="font-weight: 600; color: #fff;">${s.name}</div>
+          <div style="font-weight: 600; color: var(--text-strong);">${s.name}</div>
           <div style="font-size: 0.75rem; color: var(--text-muted);">${s.email}</div>
         </td>
         <td>${s.branch}</td>
@@ -412,7 +412,7 @@ const AdminPortal = {
         <tr>
           <td><strong>${a.id}</strong></td>
           <td>
-            <div style="font-weight: 600; color: #fff;">${a.studentId}</div>
+            <div style="font-weight: 600; color: var(--text-strong);">${a.studentId}</div>
             <div style="font-size: 0.75rem; color: var(--text-muted);">Applied: ${a.appliedDate}</div>
           </td>
           <td>
@@ -538,7 +538,7 @@ const AdminPortal = {
           <div style="display: flex; justify-content: space-between; align-items: flex-start;">
             <div>
               <span style="font-size: 0.75rem; color: var(--secondary); font-weight: 700; text-transform: uppercase;">${i.company}</span>
-              <h3 style="color: #fff; margin-top: 4px;">${i.roundName}</h3>
+              <h3 style="color: var(--text-strong); margin-top: 4px;">${i.roundName}</h3>
               <p style="color: var(--text-muted); font-size: 0.85rem; margin-top: 2px;">Candidate: <strong>${i.studentName}</strong> (${i.studentId})</p>
             </div>
             ${renderStatusBadge(i.status)}
@@ -583,7 +583,7 @@ const AdminPortal = {
       let rowsHtml = placements.map(p => `
         <tr>
           <td><strong>${p.studentId}</strong></td>
-          <td><strong style="color: #fff;">${p.studentName}</strong></td>
+          <td><strong style="color: var(--text-strong);">${p.studentName}</strong></td>
           <td>${p.branch}</td>
           <td><strong style="color: var(--secondary);">${p.company}</strong></td>
           <td>${p.role}</td>
