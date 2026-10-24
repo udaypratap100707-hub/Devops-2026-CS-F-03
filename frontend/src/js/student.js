@@ -19,7 +19,7 @@ const StudentPortal = {
         <div style="background: rgba(255, 255, 255, 0.02); border: 1px solid var(--border-color); padding: 16px; border-radius: var(--radius-md); margin-bottom: 12px;">
           <div style="display: flex; justify-content: space-between; align-items: center;">
             <div>
-              <h4 style="color: #fff;">${app.company}</h4>
+              <h4 style="color: var(--text-strong);">${app.company}</h4>
               <span style="font-size: 0.8rem; color: var(--text-muted);">${app.role}</span>
             </div>
             ${renderStatusBadge(app.status)}
@@ -32,7 +32,7 @@ const StudentPortal = {
 
       let recentNoticesHtml = notifications.slice(0, 3).map(n => `
         <div style="border-left: 3px solid var(--primary); padding-left: 12px; margin-bottom: 14px;">
-          <strong style="color: #fff; font-size: 0.9rem;">${n.title}</strong>
+          <strong style="color: var(--text-strong); font-size: 0.9rem;">${n.title}</strong>
           <div style="font-size: 0.75rem; color: var(--text-muted);">${n.date}</div>
           <p style="font-size: 0.825rem; color: var(--text-dim); margin-top: 4px;">${n.message}</p>
         </div>
@@ -185,7 +185,7 @@ const StudentPortal = {
       let listHtml = !interviews.length ? `
         <div class="panel-card" style="text-align: center; padding: 40px;">
           <i class="ri-calendar-event-line" style="font-size: 3.5rem; color: var(--text-dim);"></i>
-          <h3 style="margin-top: 14px; color: #fff;">No Upcoming Interviews Scheduled</h3>
+          <h3 style="margin-top: 14px; color: var(--text-strong);">No Upcoming Interviews Scheduled</h3>
           <p style="color: var(--text-muted); margin-top: 6px;">When recruiters shortlist your application, interview invitations will appear here.</p>
         </div>
       ` : interviews.map(i => `
@@ -193,7 +193,7 @@ const StudentPortal = {
           <div style="display: flex; justify-content: space-between; align-items: flex-start;">
             <div>
               <span style="font-size: 0.75rem; color: var(--secondary); font-weight: 700; text-transform: uppercase;">${i.company} RECRUITMENT</span>
-              <h3 style="color: #fff; margin-top: 4px;">${i.roundName}</h3>
+              <h3 style="color: var(--text-strong); margin-top: 4px;">${i.roundName}</h3>
               <p style="color: var(--text-muted); font-size: 0.85rem;">Evaluator: ${i.interviewer}</p>
             </div>
             ${renderStatusBadge(i.status)}
@@ -201,7 +201,7 @@ const StudentPortal = {
 
           <div style="margin-top: 16px; padding: 14px; background: rgba(0,0,0,0.2); border-radius: var(--radius-md); display: flex; justify-content: space-between; align-items: center;">
             <div>
-              <div style="font-size: 0.9rem; color: #fff; font-weight: 600;">
+              <div style="font-size: 0.9rem; color: var(--text-strong); font-weight: 600;">
                 <i class="ri-calendar-line" style="color: var(--primary);"></i> ${i.date}
               </div>
               <div style="font-size: 0.85rem; color: var(--text-muted); margin-top: 2px;">
@@ -315,7 +315,7 @@ const StudentPortal = {
             </div>
             <div style="text-align: center; padding: 24px; border: 1px dashed var(--border-glow); border-radius: var(--radius-md);">
               <i class="ri-file-text-fill" style="font-size: 3.5rem; color: var(--primary);"></i>
-              <h4 style="margin-top: 12px; color: #fff;">${currentStudent.name}_Resume.pdf</h4>
+              <h4 style="margin-top: 12px; color: var(--text-strong);">${currentStudent.name}_Resume.pdf</h4>
               <p style="font-size: 0.8rem; color: var(--text-muted); margin-top: 4px;">Verified by Training & Placement Cell</p>
               <div style="margin-top: 18px;">
                 <a href="${currentStudent.resumeUrl}" target="_blank" class="btn btn-secondary btn-sm">
@@ -362,7 +362,7 @@ const StudentPortal = {
       let cardsHtml = !offerApps.length ? `
         <div class="panel-card" style="text-align: center; padding: 40px;">
           <i class="ri-shake-hands-line" style="font-size: 3.5rem; color: var(--text-dim);"></i>
-          <h3 style="margin-top: 14px; color: #fff;">No Job Offers Issued Yet</h3>
+          <h3 style="margin-top: 14px; color: var(--text-strong);">No Job Offers Issued Yet</h3>
           <p style="color: var(--text-muted); margin-top: 6px;">Once you complete technical & HR interviews, your offer letters will appear here.</p>
         </div>
       ` : offerApps.map(a => `
@@ -370,7 +370,7 @@ const StudentPortal = {
           <div style="display: flex; justify-content: space-between; align-items: flex-start;">
             <div>
               <span style="font-size: 0.75rem; color: var(--success); text-transform: uppercase; letter-spacing: 0.05em; font-weight: 700;">OFFICIAL SELECTION</span>
-              <h3 style="color: #fff; font-size: 1.5rem; margin-top: 4px;">${a.company}</h3>
+              <h3 style="color: var(--text-strong); font-size: 1.5rem; margin-top: 4px;">${a.company}</h3>
               <p style="color: var(--text-muted); font-size: 0.9rem;">${a.role}</p>
             </div>
             <div class="ctc-badge">${currentStudent.offerPackage !== '-' ? currentStudent.offerPackage : '₹24.0 LPA'}</div>

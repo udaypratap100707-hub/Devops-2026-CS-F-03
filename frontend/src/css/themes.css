@@ -1,0 +1,398 @@
+/* ==========================================================================
+   Campus Placement Portal - Theme Engine + UI Upgrade
+   Switch themes by setting  <html data-theme="aurora|cyber|emerald|sunset|ocean|pearl">
+   ========================================================================== */
+
+:root,
+:root[data-theme="aurora"] {
+  --bg-dark: #0a0d14;
+  --bg-solid: #121826;
+  --panel-rgb: 18, 24, 38;
+  --ink-rgb: 255, 255, 255;
+
+  --primary: #6366f1;
+  --primary-hover: #4f46e5;
+  --primary-rgb: 99, 102, 241;
+  --secondary: #a855f7;
+  --secondary-rgb: 168, 85, 247;
+  --accent-cyan: #06b6d4;
+  --cyan-rgb: 6, 182, 212;
+
+  --bg-card: rgba(var(--panel-rgb), 0.7);
+  --bg-card-hover: rgba(28, 36, 56, 0.85);
+  --bg-glass: rgba(var(--ink-rgb), 0.03);
+  --border-color: rgba(var(--ink-rgb), 0.08);
+  --border-glow: rgba(var(--primary-rgb), 0.3);
+  --primary-glow: rgba(var(--primary-rgb), 0.25);
+
+  --success: #10b981;
+  --success-bg: rgba(16, 185, 129, 0.15);
+  --warning: #f59e0b;
+  --warning-bg: rgba(245, 158, 11, 0.15);
+  --danger: #ef4444;
+  --danger-bg: rgba(239, 68, 68, 0.15);
+  --info: #3b82f6;
+  --info-bg: rgba(59, 130, 246, 0.15);
+
+  --text-main: #f8fafc;
+  --text-strong: #ffffff;
+  --text-muted: #94a3b8;
+  --text-dim: #64748b;
+
+  --radius-sm: 10px;
+  --radius-md: 14px;
+  --radius-lg: 22px;
+
+  --shadow-main: 0 20px 40px -15px rgba(0, 0, 0, 0.5);
+  --transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+
+  --brand-gradient: linear-gradient(90deg, #ffffff, #c7d2fe);
+  --body-glow:
+    radial-gradient(circle at 15% 20%, rgba(var(--primary-rgb), 0.14) 0%, transparent 40%),
+    radial-gradient(circle at 85% 75%, rgba(var(--secondary-rgb), 0.12) 0%, transparent 40%);
+  color-scheme: dark;
+}
+
+/* ---------- 2. Cyber Neon ---------- */
+:root[data-theme="cyber"] {
+  --bg-dark: #07040f;
+  --bg-solid: #130a24;
+  --panel-rgb: 22, 10, 40;
+  --primary: #ff2e93;
+  --primary-hover: #e0127b;
+  --primary-rgb: 255, 46, 147;
+  --secondary: #8b5cf6;
+  --secondary-rgb: 139, 92, 246;
+  --accent-cyan: #22f5e1;
+  --cyan-rgb: 34, 245, 225;
+  --bg-card-hover: rgba(40, 18, 70, 0.85);
+  --text-muted: #b4a3d6;
+  --text-dim: #7d6aa6;
+  --brand-gradient: linear-gradient(90deg, #ffffff, #22f5e1);
+  --body-glow:
+    radial-gradient(circle at 10% 15%, rgba(255, 46, 147, 0.18) 0%, transparent 40%),
+    radial-gradient(circle at 90% 80%, rgba(34, 245, 225, 0.14) 0%, transparent 40%);
+}
+
+/* ---------- 3. Emerald Forest ---------- */
+:root[data-theme="emerald"] {
+  --bg-dark: #05110d;
+  --bg-solid: #0c1d17;
+  --panel-rgb: 12, 32, 25;
+  --primary: #10b981;
+  --primary-hover: #059669;
+  --primary-rgb: 16, 185, 129;
+  --secondary: #14b8a6;
+  --secondary-rgb: 20, 184, 166;
+  --accent-cyan: #a3e635;
+  --cyan-rgb: 163, 230, 53;
+  --success: #34d399;
+  --bg-card-hover: rgba(18, 50, 39, 0.85);
+  --text-muted: #8fb5a6;
+  --text-dim: #5f8576;
+  --brand-gradient: linear-gradient(90deg, #ffffff, #a7f3d0);
+  --body-glow:
+    radial-gradient(circle at 15% 20%, rgba(16, 185, 129, 0.16) 0%, transparent 40%),
+    radial-gradient(circle at 85% 75%, rgba(163, 230, 53, 0.08) 0%, transparent 40%);
+}
+
+/* ---------- 4. Sunset Ember ---------- */
+:root[data-theme="sunset"] {
+  --bg-dark: #130a0a;
+  --bg-solid: #241312;
+  --panel-rgb: 38, 20, 18;
+  --primary: #f97316;
+  --primary-hover: #ea580c;
+  --primary-rgb: 249, 115, 22;
+  --secondary: #ec4899;
+  --secondary-rgb: 236, 72, 153;
+  --accent-cyan: #fbbf24;
+  --cyan-rgb: 251, 191, 36;
+  --bg-card-hover: rgba(60, 32, 28, 0.85);
+  --text-muted: #c4a59b;
+  --text-dim: #8f7168;
+  --brand-gradient: linear-gradient(90deg, #ffffff, #fed7aa);
+  --body-glow:
+    radial-gradient(circle at 15% 20%, rgba(249, 115, 22, 0.16) 0%, transparent 40%),
+    radial-gradient(circle at 85% 75%, rgba(236, 72, 153, 0.12) 0%, transparent 40%);
+}
+
+/* ---------- 5. Ocean Breeze ---------- */
+:root[data-theme="ocean"] {
+  --bg-dark: #050e1a;
+  --bg-solid: #0b1b2e;
+  --panel-rgb: 11, 30, 50;
+  --primary: #0ea5e9;
+  --primary-hover: #0284c7;
+  --primary-rgb: 14, 165, 233;
+  --secondary: #3b82f6;
+  --secondary-rgb: 59, 130, 246;
+  --accent-cyan: #2dd4bf;
+  --cyan-rgb: 45, 212, 191;
+  --info: #38bdf8;
+  --bg-card-hover: rgba(18, 48, 80, 0.85);
+  --text-muted: #8fb0cc;
+  --text-dim: #5d7f9c;
+  --brand-gradient: linear-gradient(90deg, #ffffff, #bae6fd);
+  --body-glow:
+    radial-gradient(circle at 15% 20%, rgba(14, 165, 233, 0.16) 0%, transparent 40%),
+    radial-gradient(circle at 85% 75%, rgba(45, 212, 191, 0.1) 0%, transparent 40%);
+}
+
+/* ---------- 6. Pearl (Light) ---------- */
+:root[data-theme="pearl"] {
+  --bg-dark: #f1f5f9;
+  --bg-solid: #ffffff;
+  --panel-rgb: 255, 255, 255;
+  --ink-rgb: 15, 23, 42;
+  --primary: #4f46e5;
+  --primary-hover: #4338ca;
+  --primary-rgb: 79, 70, 229;
+  --secondary: #9333ea;
+  --secondary-rgb: 147, 51, 234;
+  --accent-cyan: #0891b2;
+  --cyan-rgb: 8, 145, 178;
+  --bg-card: rgba(255, 255, 255, 0.9);
+  --bg-card-hover: #ffffff;
+  --border-color: rgba(15, 23, 42, 0.1);
+  --success: #059669;
+  --warning: #d97706;
+  --danger: #dc2626;
+  --info: #2563eb;
+  --text-main: #0f172a;
+  --text-strong: #0f172a;
+  --text-muted: #475569;
+  --text-dim: #64748b;
+  --shadow-main: 0 12px 30px -14px rgba(15, 23, 42, 0.25);
+  --brand-gradient: linear-gradient(90deg, #4f46e5, #9333ea);
+  --body-glow:
+    radial-gradient(circle at 15% 20%, rgba(79, 70, 229, 0.10) 0%, transparent 40%),
+    radial-gradient(circle at 85% 75%, rgba(147, 51, 234, 0.08) 0%, transparent 40%);
+  color-scheme: light;
+}
+:root[data-theme="pearl"] .badge-active { color: #047857; }
+:root[data-theme="pearl"] .badge-closed { color: #b91c1c; }
+:root[data-theme="pearl"] .login-screen-overlay { background: rgba(226, 232, 240, 0.9); }
+:root[data-theme="pearl"] .modal-overlay { background: rgba(15, 23, 42, 0.45); }
+:root[data-theme="pearl"] .toast { color: var(--text-main); }
+:root[data-theme="pearl"] .brand-icon,
+:root[data-theme="pearl"] .user-avatar { color: #fff; }
+
+/* ==========================================================================
+   UI UPGRADE (applies to every theme)
+   ========================================================================== */
+
+html { scroll-behavior: smooth; }
+body { transition: background-color .4s ease, color .3s ease; }
+
+/* floating colour orbs behind the app */
+body::before,
+body::after {
+  content: '';
+  position: fixed;
+  width: 42vmax;
+  height: 42vmax;
+  border-radius: 50%;
+  filter: blur(90px);
+  opacity: 0.22;
+  pointer-events: none;
+  z-index: -1;
+  animation: orbFloat 22s ease-in-out infinite alternate;
+}
+body::before { background: var(--primary); top: -15vmax; left: -10vmax; }
+body::after  { background: var(--secondary); bottom: -18vmax; right: -12vmax; animation-delay: -8s; }
+:root[data-theme="pearl"] body::before,
+:root[data-theme="pearl"] body::after { opacity: 0.12; }
+
+@keyframes orbFloat {
+  from { transform: translate(0, 0) scale(1); }
+  to   { transform: translate(6vmax, 4vmax) scale(1.15); }
+}
+
+/* view transition */
+#viewContainer > * { animation: viewIn .45s cubic-bezier(.2,.8,.2,1) both; }
+@keyframes viewIn {
+  from { opacity: 0; transform: translateY(14px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* header + brand */
+.top-header { box-shadow: 0 8px 30px -18px rgba(0,0,0,.6); }
+.brand-icon { animation: brandPulse 3.5s ease-in-out infinite; }
+@keyframes brandPulse {
+  0%, 100% { box-shadow: 0 0 18px rgba(var(--primary-rgb), .35); }
+  50%      { box-shadow: 0 0 30px rgba(var(--primary-rgb), .65); }
+}
+
+/* gradient accent line under header */
+.top-header::after {
+  content: '';
+  position: absolute;
+  left: 0; right: 0; bottom: -1px;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, var(--primary), var(--secondary), var(--accent-cyan), transparent);
+  opacity: .7;
+}
+
+/* sidebar nav */
+.nav-item { position: relative; }
+.nav-item.active::before {
+  content: '';
+  position: absolute;
+  left: -16px; top: 20%; bottom: 20%;
+  width: 4px;
+  border-radius: 0 4px 4px 0;
+  background: linear-gradient(180deg, var(--primary), var(--secondary));
+  box-shadow: 0 0 12px var(--primary);
+}
+
+/* buttons - shine sweep */
+.btn-primary { position: relative; overflow: hidden; }
+.btn-primary::after {
+  content: '';
+  position: absolute;
+  top: 0; left: -120%;
+  width: 60%; height: 100%;
+  background: linear-gradient(120deg, transparent, rgba(255,255,255,.35), transparent);
+  transform: skewX(-20deg);
+  transition: left .6s ease;
+}
+.btn-primary:hover::after { left: 140%; }
+.btn:active { transform: scale(.97); }
+
+/* cards */
+.metric-card, .panel-card, .drive-card { position: relative; }
+.metric-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: linear-gradient(135deg, rgba(var(--primary-rgb), .10), transparent 55%);
+  pointer-events: none;
+}
+.metric-info h3 {
+  background: linear-gradient(90deg, var(--text-strong), var(--primary));
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+.page-title h2 {
+  background: var(--brand-gradient);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+.metric-card:hover, .drive-card:hover, .panel-card:hover { border-color: var(--border-glow); }
+
+/* inputs */
+.form-control:focus,
+.search-input-box input:focus,
+.select-filter:focus {
+  border-color: var(--primary);
+  box-shadow: 0 0 0 3px rgba(var(--primary-rgb), .2);
+}
+
+/* tables */
+.custom-table tbody tr:hover { background: rgba(var(--primary-rgb), .07); }
+
+/* ==========================================================================
+   Theme Picker (header)
+   ========================================================================== */
+.theme-picker {
+  position: relative;
+}
+.theme-toggle-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  color: var(--text-main);
+  padding: 8px 14px;
+  border-radius: 30px;
+  font-family: inherit;
+  font-size: 0.8rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: var(--transition);
+}
+.theme-toggle-btn:hover { border-color: var(--primary); box-shadow: 0 0 14px var(--primary-glow); }
+.theme-toggle-btn .theme-dot {
+  width: 14px; height: 14px; border-radius: 50%;
+  background: linear-gradient(135deg, var(--primary), var(--secondary));
+  box-shadow: 0 0 8px var(--primary);
+}
+.theme-menu {
+  position: absolute;
+  right: 0;
+  top: calc(100% + 10px);
+  min-width: 220px;
+  background: var(--bg-solid);
+  border: 1px solid var(--border-glow);
+  border-radius: var(--radius-md);
+  padding: 8px;
+  box-shadow: 0 25px 50px -12px rgba(0,0,0,.6);
+  display: none;
+  z-index: 300;
+  animation: viewIn .2s ease both;
+}
+.theme-menu.open { display: block; }
+.theme-option {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  background: transparent;
+  border: 1px solid transparent;
+  color: var(--text-main);
+  padding: 9px 10px;
+  border-radius: var(--radius-sm);
+  font-family: inherit;
+  font-size: 0.85rem;
+  font-weight: 500;
+  cursor: pointer;
+  text-align: left;
+  transition: var(--transition);
+}
+.theme-option:hover { background: rgba(var(--ink-rgb), .06); }
+.theme-option.active { border-color: var(--border-glow); background: rgba(var(--primary-rgb), .15); font-weight: 700; }
+.theme-swatch {
+  width: 34px; height: 22px; border-radius: 7px;
+  border: 1px solid rgba(255,255,255,.25);
+  flex-shrink: 0;
+}
+.theme-option .ri-check-line { margin-left: auto; color: var(--primary); opacity: 0; }
+.theme-option.active .ri-check-line { opacity: 1; }
+
+/* Login-screen floating theme picker */
+.login-theme-row {
+  display: flex; justify-content: center; gap: 10px; margin-top: 18px; flex-wrap: wrap;
+}
+.login-theme-chip {
+  width: 28px; height: 28px; border-radius: 50%;
+  border: 2px solid transparent;
+  cursor: pointer;
+  transition: var(--transition);
+  outline: none;
+}
+.login-theme-chip:hover { transform: scale(1.15); }
+.login-theme-chip.active { border-color: var(--text-strong); box-shadow: 0 0 12px rgba(var(--primary-rgb), .7); }
+
+/* Responsive polish */
+@media (max-width: 900px) {
+  .top-header { height: auto; padding: 10px 14px; flex-wrap: wrap; gap: 10px; }
+  .header-actions { flex-wrap: wrap; gap: 10px; }
+  .app-container { flex-direction: column; }
+  .sidebar { width: 100%; flex-direction: row; overflow-x: auto; padding: 10px; }
+  .main-content { padding: 18px; }
+  .brand-text p { display: none; }
+}
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation: none !important; transition: none !important; }
+}
+
+/* Header fit tweaks */
+.brand-text h1 { white-space: nowrap; font-size: 1.1rem; }
+.theme-toggle-btn #themeLabel { white-space: nowrap; }
+@media (max-width: 1500px) { .theme-toggle-btn #themeLabel { display: none; } }
+.header-actions { gap: 14px; }

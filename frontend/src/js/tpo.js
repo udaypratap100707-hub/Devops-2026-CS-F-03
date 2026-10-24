@@ -25,7 +25,7 @@ const TpoPortal = {
       let recentPlacementsHtml = placements.slice(0, 4).map(p => `
         <div style="display: flex; justify-content: space-between; align-items: center; padding: 12px 0; border-bottom: 1px solid var(--border-color);">
           <div>
-            <strong style="color: #fff;">${p.studentName}</strong> (${p.branch})
+            <strong style="color: var(--text-strong);">${p.studentName}</strong> (${p.branch})
             <div style="font-size: 0.8rem; color: var(--text-muted);">${p.company} • ${p.role}</div>
           </div>
           <div style="text-align: right;">

@@ -5,11 +5,167 @@ const path = require('path');
 
 const app = express();
 const PORT = process.env.PORT || 3000;
-const DATA_FILE = path.join(__dirname, 'data', 'store.json');
+const os = require('os');
+const pkg = require('./package.json');
+const DATA_FILE = process.env.DATA_FILE || path.join(__dirname, 'data', 'store.json');
+const startedAt = Date.now();
 
 app.use(cors());
 app.use(express.json());
-app.use(express.static(path.join(__dirname, 'public')));
+// Serve ./public if it exists (deploy build), otherwise the ./src folder shipped in this project
+const STATIC_DIR = fs.existsSync(path.join(__dirname, 'public')) ? path.join(__dirname, 'public') : path.join(__dirname, 'src');
+app.use(express.static(STATIC_DIR));
+
+// =============================================================
+// DEVOPS LAYER: security headers, request logging, metrics,
+// rate limiting, health/version/metrics/docs endpoints
+// =============================================================
+app.disable('x-powered-by');
+app.use((req, res, next) => {
+  res.setHeader('X-Content-Type-Options', 'nosniff');
+  res.setHeader('X-Frame-Options', 'SAMEORIGIN');
+  res.setHeader('Referrer-Policy', 'no-referrer');
+  next();
+});
+
+const metrics = { total: 0, totalMs: 0, byStatus: {}, byMethod: {}, recent: [] };
+const MONITOR_PATHS = ['/api/health', '/api/metrics', '/api/logs'];
+
+app.use((req, res, next) => {
+  const t0 = process.hrtime.bigint();
+  res.on('finish', () => {
+    if (!req.originalUrl.startsWith('/api')) return;
+    if (MONITOR_PATHS.some(p => req.originalUrl.startsWith(p))) return; // don't let the monitor spam itself
+    const ms = Number(process.hrtime.bigint() - t0) / 1e6;
+    metrics.total++;
+    metrics.totalMs += ms;
+    const sc = String(res.statusCode);
+    metrics.byStatus[sc] = (metrics.byStatus[sc] || 0) + 1;
+    metrics.byMethod[req.method] = (metrics.byMethod[req.method] || 0) + 1;
+    metrics.recent.unshift({
+      time: new Date().toISOString(),
+      method: req.method,
+      path: req.originalUrl.split('?')[0],
+      status: res.statusCode,
+      ms: Math.round(ms * 10) / 10
+    });
+    if (metrics.recent.length > 100) metrics.recent.pop();
+    if (process.env.NODE_ENV !== 'test') {
+      console.log(`${new Date().toISOString()} ${req.method} ${req.originalUrl} ${res.statusCode} ${ms.toFixed(1)}ms`);
+    }
+  });
+  next();
+});
+
+// Tiny in-memory rate limiter (no extra dependency)
+function rateLimit(max, windowMs) {
+  const hits = new Map();
+  return (req, res, next) => {
+    const now = Date.now();
+    let entry = hits.get(req.ip);
+    if (!entry || now > entry.reset) {
+      entry = { count: 0, reset: now + windowMs };
+      hits.set(req.ip, entry);
+    }
+    entry.count++;
+    res.setHeader('X-RateLimit-Limit', max);
+    res.setHeader('X-RateLimit-Remaining', Math.max(0, max - entry.count));
+    if (entry.count > max) {
+      res.setHeader('Retry-After', Math.ceil((entry.reset - now) / 1000));
+      return res.status(429).json({ error: 'Too many attempts. Please try again in a minute.' });
+    }
+    next();
+  };
+}
+app.use('/api/auth', rateLimit(Number(process.env.AUTH_RATE_LIMIT) || 30, 60 * 1000));
+
+const mb = (n) => Math.round((n / 1024 / 1024) * 10) / 10;
+
+app.get('/api/health', (req, res) => {
+  res.json({
+    status: 'ok',
+    uptimeSeconds: Math.round((Date.now() - startedAt) / 1000),
+    timestamp: new Date().toISOString(),
+    dataStore: fs.existsSync(DATA_FILE) ? 'available' : 'missing'
+  });
+});
+
+app.get('/api/version', (req, res) => {
+  res.json({
+    name: pkg.name,
+    version: pkg.version,
+    node: process.version,
+    environment: process.env.NODE_ENV || 'development',
+    commit: process.env.GIT_SHA || 'local',
+    startedAt: new Date(startedAt).toISOString()
+  });
+});
+
+function snapshotMetrics() {
+  const mem = process.memoryUsage();
+  return {
+    uptimeSeconds: Math.round((Date.now() - startedAt) / 1000),
+    requests: {
+      total: metrics.total,
+      avgLatencyMs: metrics.total ? Math.round((metrics.totalMs / metrics.total) * 10) / 10 : 0,
+      byStatus: metrics.byStatus,
+      byMethod: metrics.byMethod
+    },
+    memory: { rssMB: mb(mem.rss), heapUsedMB: mb(mem.heapUsed), heapTotalMB: mb(mem.heapTotal) },
+    system: { platform: process.platform, cpus: os.cpus().length, loadAvg: os.loadavg().map(n => Math.round(n * 100) / 100) }
+  };
+}
+
+app.get('/api/metrics', (req, res) => res.json(snapshotMetrics()));
+
+// Prometheus text exposition format (scrape with Prometheus/Grafana)
+app.get('/api/metrics/prometheus', (req, res) => {
+  const m = snapshotMetrics();
+  const lines = [
+    '# HELP placement_uptime_seconds Process uptime in seconds',
+    '# TYPE placement_uptime_seconds gauge',
+    `placement_uptime_seconds ${m.uptimeSeconds}`,
+    '# HELP placement_http_requests_total Total API requests by status code',
+    '# TYPE placement_http_requests_total counter',
+    ...Object.entries(m.requests.byStatus).map(([c, n]) => `placement_http_requests_total{status="${c}"} ${n}`),
+    '# HELP placement_memory_rss_megabytes Resident memory in MB',
+    '# TYPE placement_memory_rss_megabytes gauge',
+    `placement_memory_rss_megabytes ${m.memory.rssMB}`
+  ];
+  res.type('text/plain').send(lines.join('\n') + '\n');
+});
+
+app.get('/api/logs', (req, res) => res.json(metrics.recent.slice(0, 50)));
+
+// Self-documenting API (used by the "API Explorer" screen)
+const API_DOCS = [
+  { tag: 'Auth', method: 'POST', path: '/api/auth/login', desc: 'Sign in with email + password', body: { email: 'admin@campus.edu', password: 'admin123' } },
+  { tag: 'Auth', method: 'POST', path: '/api/auth/register', desc: 'Create a student / recruiter / tpo / admin account', body: { name: 'Demo User', email: 'demo@campus.edu', password: 'demo123', role: 'student', branch: 'Computer Science', cgpa: 8.2 } },
+  { tag: 'Analytics', method: 'GET', path: '/api/stats', desc: 'Dashboard statistics (8 key cards + branch breakdown)' },
+  { tag: 'Companies', method: 'GET', path: '/api/companies', desc: 'List visiting companies' },
+  { tag: 'Companies', method: 'POST', path: '/api/companies', desc: 'Add a company' },
+  { tag: 'Drives', method: 'GET', path: '/api/drives', desc: 'List placement drives (supports filters)' },
+  { tag: 'Drives', method: 'POST', path: '/api/drives', desc: 'Create a placement drive' },
+  { tag: 'Drives', method: 'PUT', path: '/api/drives/:id', desc: 'Update a drive' },
+  { tag: 'Students', method: 'GET', path: '/api/students', desc: 'List students' },
+  { tag: 'Students', method: 'GET', path: '/api/students/export', desc: 'Export students' },
+  { tag: 'Students', method: 'PUT', path: '/api/students/:id', desc: 'Update a student profile' },
+  { tag: 'Applications', method: 'GET', path: '/api/applications', desc: 'List applications' },
+  { tag: 'Applications', method: 'POST', path: '/api/applications', desc: 'Apply to a drive' },
+  { tag: 'Applications', method: 'PUT', path: '/api/applications/:id/status', desc: 'Move an application through the pipeline' },
+  { tag: 'Interviews', method: 'GET', path: '/api/shortlists', desc: 'List shortlists' },
+  { tag: 'Interviews', method: 'GET', path: '/api/interviews', desc: 'List interviews' },
+  { tag: 'Interviews', method: 'POST', path: '/api/interviews', desc: 'Schedule an interview' },
+  { tag: 'Placements', method: 'GET', path: '/api/placements', desc: 'Placement ledger' },
+  { tag: 'Notifications', method: 'GET', path: '/api/notifications', desc: 'List notifications' },
+  { tag: 'Notifications', method: 'POST', path: '/api/notifications', desc: 'Broadcast a notification' },
+  { tag: 'DevOps', method: 'GET', path: '/api/health', desc: 'Liveness/readiness probe (used by Docker + Kubernetes)' },
+  { tag: 'DevOps', method: 'GET', path: '/api/version', desc: 'App version, Node version, commit SHA, environment' },
+  { tag: 'DevOps', method: 'GET', path: '/api/metrics', desc: 'Uptime, memory, request counters (JSON)' },
+  { tag: 'DevOps', method: 'GET', path: '/api/metrics/prometheus', desc: 'Same metrics in Prometheus format' },
+  { tag: 'DevOps', method: 'GET', path: '/api/logs', desc: 'Last 50 API requests (for the live monitor)' }
+];
+app.get('/api/docs', (req, res) => res.json(API_DOCS));
 
 function readData() {
   try {
@@ -27,6 +183,7 @@ function readData() {
 
 function writeData(data) {
   try {
+    fs.mkdirSync(path.dirname(DATA_FILE), { recursive: true });
     fs.writeFileSync(DATA_FILE, JSON.stringify(data, null, 2), 'utf-8');
     return true;
   } catch (err) {
@@ -535,10 +692,30 @@ app.post('/api/notifications', (req, res) => {
   res.status(201).json(newNote);
 });
 
-// Start Server
-app.listen(PORT, '0.0.0.0', () => {
-  console.log(`=================================================`);
-  console.log(` Enterprise 4-Panel Placement Platform Active`);
-  console.log(` Listening on port: ${PORT}`);
-  console.log(`=================================================`);
+// Unknown API route -> JSON 404, unexpected errors -> JSON 500
+app.use('/api', (req, res) => res.status(404).json({ error: `Route not found: ${req.method} ${req.originalUrl}` }));
+app.use((err, req, res, next) => {
+  console.error('Unhandled error:', err);
+  res.status(err.status || 500).json({ error: err.status && err.status < 500 ? err.message : 'Internal server error' });
 });
+
+// Start Server (only when run directly, so tests can import `app`)
+if (require.main === module) {
+  const server = app.listen(PORT, '0.0.0.0', () => {
+    console.log(`=================================================`);
+    console.log(` Enterprise 4-Panel Placement Platform Active`);
+    console.log(` Listening on port: ${PORT}`);
+    console.log(`=================================================`);
+  });
+
+  // Graceful shutdown (docker stop / kubernetes rolling update send SIGTERM)
+  const shutdown = (sig) => {
+    console.log(`${sig} received, shutting down gracefully...`);
+    server.close(() => process.exit(0));
+    setTimeout(() => process.exit(1), 8000).unref();
+  };
+  process.on('SIGTERM', () => shutdown('SIGTERM'));
+  process.on('SIGINT', () => shutdown('SIGINT'));
+}
+
+module.exports = app;
