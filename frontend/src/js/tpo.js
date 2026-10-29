@@ -41,7 +41,7 @@ const TpoPortal = {
             <h2>Placement Officer (TPO) Desk</h2>
             <p>Campus recruitment administration, eligibility enforcement, and placement statistics.</p>
           </div>
-          <a href="${API.exportStudentsUrl()}" class="btn btn-primary">
+          <a href="#" onclick="API.downloadStudentsCsv(); return false;" class="btn btn-primary">
             <i class="ri-file-download-line"></i> Download Master Report (CSV)
           </a>
         </div>
@@ -84,7 +84,7 @@ const TpoPortal = {
     container.innerHTML = `<div class="loading-state">Loading Companies Directory...</div>`;
 
     try {
-      const companies = await API.getCompanies();
+      const companies = (await API.getCompanies()).filter(c => c.status === 'Approved Partner');
 
       let cardsHtml = companies.map(c => `
         <div class="drive-card">
@@ -93,7 +93,7 @@ const TpoPortal = {
               <h4>${c.name}</h4>
               <p>${c.sector}</p>
             </div>
-            <span class="badge badge-placed"><i class="ri-star-fill" style="color: #f59e0b;"></i> ${c.rating}</span>
+            <span class="badge badge-placed"><i class="ri-star-fill" style="color: #f59e0b;"></i> ${c.rating || 'New'}</span>
           </div>
           <div class="drive-requirements">
             <div class="req-item"><i class="ri-user-2-line"></i> HR: ${c.hrName}</div>

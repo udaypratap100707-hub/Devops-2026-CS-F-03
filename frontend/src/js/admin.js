@@ -43,7 +43,7 @@ const AdminPortal = {
             <p>Real-time campus placement metrics, hiring drive statistics, and branch performance.</p>
           </div>
           <div style="display: flex; gap: 12px;">
-            <a href="${API.exportStudentsUrl()}" class="btn btn-secondary">
+            <a href="#" onclick="API.downloadStudentsCsv(); return false;" class="btn btn-secondary">
               <i class="ri-file-download-line"></i> Export Reports
             </a>
             <button class="btn btn-primary" onclick="AdminPortal.openNewDriveModal()">
@@ -259,7 +259,7 @@ const AdminPortal = {
             <h2>Student Master Directory</h2>
             <p>Filter candidates, view CGPA & backlog details, and export student placement reports.</p>
           </div>
-          <a href="${API.exportStudentsUrl()}" class="btn btn-secondary">
+          <a href="#" onclick="API.downloadStudentsCsv(); return false;" class="btn btn-secondary">
             <i class="ri-file-download-line"></i> Export CSV Report
           </a>
         </div>
@@ -599,7 +599,7 @@ const AdminPortal = {
             <h2>Final Placement Results Ledger</h2>
             <p>Official ledger of candidates placed, selected companies, and accepted salary packages.</p>
           </div>
-          <a href="${API.exportStudentsUrl()}" class="btn btn-secondary">
+          <a href="#" onclick="API.downloadStudentsCsv(); return false;" class="btn btn-secondary">
             <i class="ri-file-download-line"></i> Download Ledger (CSV)
           </a>
         </div>
