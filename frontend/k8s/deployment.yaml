@@ -4,7 +4,7 @@ metadata:
   name: placement-app
   labels: { app: placement-app }
 spec:
-  replicas: 2
+  replicas: 2                      # the app is stateless now - data lives in MongoDB
   selector:
     matchLabels: { app: placement-app }
   template:
@@ -18,6 +18,9 @@ spec:
             - containerPort: 3000
           env:
             - { name: NODE_ENV, value: production }
+            - { name: MONGODB_URI, value: "mongodb://mongo:27017/campus_placement" }
+          envFrom:
+            - secretRef: { name: placement-secrets }
           readinessProbe:
             httpGet: { path: /api/health, port: 3000 }
             initialDelaySeconds: 5

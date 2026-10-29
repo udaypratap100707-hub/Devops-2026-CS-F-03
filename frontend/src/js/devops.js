@@ -54,10 +54,10 @@ const DevOpsPortal = {
     try {
       const t0 = performance.now();
       const [health, version, m, logs] = await Promise.all([
-        fetch('/api/health').then(r => r.json()),
-        fetch('/api/version').then(r => r.json()),
-        fetch('/api/metrics').then(r => r.json()),
-        fetch('/api/logs').then(r => r.json())
+        fetch(`${API_BASE}/health`, { headers: API.authHeaders() }).then(r => r.json()),
+        fetch(`${API_BASE}/version`, { headers: API.authHeaders() }).then(r => r.json()),
+        fetch(`${API_BASE}/metrics`, { headers: API.authHeaders() }).then(r => r.json()),
+        fetch(`${API_BASE}/logs`, { headers: API.authHeaders() }).then(r => r.json())
       ]);
       const ping = Math.round(performance.now() - t0);
       this.lastLogs = logs;
@@ -70,7 +70,7 @@ const DevOpsPortal = {
         renderMetricCard('Memory (RSS)', `${m.memory.rssMB} MB`, `Heap ${m.memory.heapUsedMB}/${m.memory.heapTotalMB} MB`, 'ri-cpu-line', 'icon-purple'),
         renderMetricCard('App Version', `v${this.esc(version.version)}`, `Commit: ${this.esc(version.commit)}`, 'ri-git-branch-line', 'icon-indigo'),
         renderMetricCard('Runtime', this.esc(version.node), `${this.esc(version.environment)} • ${m.system.cpus} CPU`, 'ri-nodejs-line', 'icon-emerald'),
-        renderMetricCard('Data Store', health.dataStore === 'available' ? 'Connected' : 'Missing', 'data/store.json', 'ri-database-2-line', health.dataStore === 'available' ? 'icon-cyan' : 'icon-amber'),
+        renderMetricCard('Database', health.databaseStatus === 'connected' ? 'Connected' : 'Unreachable', health.database === 'mongodb' ? 'MongoDB' : 'In-memory (demo mode)', 'ri-database-2-line', health.databaseStatus === 'connected' ? 'icon-cyan' : 'icon-amber'),
         renderMetricCard('Load Average', m.system.loadAvg[0], `5m: ${m.system.loadAvg[1]} • 15m: ${m.system.loadAvg[2]}`, 'ri-speed-line', 'icon-amber')
       ].join('');
 
@@ -153,7 +153,7 @@ const DevOpsPortal = {
     container.innerHTML = `<div class="loading-state"><i class="ri-loader-4-line ri-spin"></i> Loading API catalogue...</div>`;
 
     try {
-      const docs = await fetch('/api/docs').then(r => r.json());
+      const docs = await fetch(`${API_BASE}/docs`, { headers: API.authHeaders() }).then(r => r.json());
       this.docs = docs;
       const tags = [...new Set(docs.map(d => d.tag))];
 
@@ -200,6 +200,7 @@ const DevOpsPortal = {
             <code class="api-path">${this.esc(d.path)}</code>
             <span class="api-desc">${this.esc(d.desc)}</span>
             <span class="drive-tag">${this.esc(d.tag)}</span>
+            <span class="access-pill ${d.access === 'public' ? 'pub' : ''}" title="Who may call this endpoint"><i class="ri-lock-line"></i> ${this.esc(d.access || '')}</span>
             <div class="api-actions">
               ${tryable ? `<button class="btn btn-primary btn-sm" onclick="DevOpsPortal.tryEndpoint(${d.i})"><i class="ri-play-fill"></i> Try it</button>` : ''}
               <button class="btn btn-secondary btn-sm" onclick="DevOpsPortal.copyCurl(${d.i})"><i class="ri-terminal-box-line"></i> cURL</button>
@@ -217,7 +218,7 @@ const DevOpsPortal = {
     out.innerHTML = `<pre class="api-pre">Calling ${this.esc(d.path)} ...</pre>`;
     const t0 = performance.now();
     try {
-      const res = await fetch(d.path);
+      const res = await fetch(API_BASE.replace(/\/api$/, '') + d.path, { headers: API.authHeaders() });
       const ms = Math.round(performance.now() - t0);
       const text = await res.text();
       let pretty = text;
@@ -233,7 +234,9 @@ const DevOpsPortal = {
 
   copyCurl(i) {
     const d = this.docs[i];
-    let cmd = `curl -X ${d.method} ${location.origin}${d.path}`;
+    const origin = /^https?:/.test(API_BASE) ? API_BASE.replace(/\/api$/, '') : location.origin;
+    let cmd = `curl -X ${d.method} ${origin}${d.path}`;
+    if (d.access && d.access !== 'public') cmd += ' -H "Authorization: Bearer <YOUR_TOKEN>"';
     if (d.body) cmd += ` -H "Content-Type: application/json" -d '${JSON.stringify(d.body)}'`;
     const done = () => showToast('cURL command copied to clipboard.', 'success');
     if (navigator.clipboard) navigator.clipboard.writeText(cmd).then(done, () => showToast(cmd, 'info'));
