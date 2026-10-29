@@ -1,0 +1,44 @@
+{
+  "users": [
+    {
+      "id": 1789979580883,
+      "name": "singh",
+      "email": "singh@gmail.com",
+      "phone": "8949956566",
+      "college": "skit",
+      "course": "B.Tech CSE",
+      "password": "12345678",
+      "createdAt": "2026-09-21T08:33:00.883Z"
+    },
+    {
+      "id": 1790577777568,
+      "name": "Uday",
+      "email": "uday2@test.com",
+      "phone": "5324598752",
+      "college": "skit",
+      "course": "B.Tech CSE",
+      "password": "123456",
+      "createdAt": "2026-09-28T06:42:57.568Z"
+    },
+    {
+      "id": 1790579467377,
+      "name": "Uday",
+      "email": "uday@ht",
+      "phone": "5324598752",
+      "college": "skit",
+      "course": "B.Tech CSE",
+      "password": "123456",
+      "createdAt": "2026-09-28T07:11:07.377Z"
+    },
+    {
+      "id": 1790585793622,
+      "name": "Uday",
+      "email": "hj@l",
+      "phone": "5324598752",
+      "college": "skit",
+      "course": "B.Tech CSE",
+      "password": "123456",
+      "createdAt": "2026-09-28T08:56:33.622Z"
+    }
+  ]
+}
